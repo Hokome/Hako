@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkjj3dcssx7jh"]
+[gd_scene load_steps=6 format=3 uid="uid://bkjj3dcssx7jh"]
 
 [ext_resource type="Script" uid="uid://b3vfbdwkhar8y" path="res://menu/menu_stack.gd" id="1_j66a1"]
 [ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://menu/menu.gd" id="2_k6j1u"]
 [ext_resource type="Script" uid="uid://bfm3hms78vpvb" path="res://menu/navigation_button.gd" id="3_2kbc2"]
 [ext_resource type="Script" uid="uid://c6im1db62ex4f" path="res://menu/back_button.gd" id="4_2vhb1"]
+[ext_resource type="Script" uid="uid://dmtt6frn8ij15" path="res://menu/fade_transition.gd" id="5_k6j1u"]
 
-[node name="menu_stack" type="Node" node_paths=PackedStringArray("starting_menu")]
+[node name="menu_stack" type="Node" node_paths=PackedStringArray("starting_menu", "default_transition")]
 script = ExtResource("1_j66a1")
 starting_menu = NodePath("main_menu")
+default_transition = NodePath("fade_menu_transition")
+
+[node name="fade_menu_transition" type="Node" parent="."]
+script = ExtResource("5_k6j1u")
+time = 0.4
+metadata/_custom_type_script = "uid://dmtt6frn8ij15"
 
 [node name="main_menu" type="VBoxContainer" parent="."]
 visible = false
