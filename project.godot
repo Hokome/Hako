@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Hako"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://bkjj3dcssx7jh"
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [editor]

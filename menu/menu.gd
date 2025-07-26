@@ -1,4 +1,4 @@
-extends Node
-class_name MenuStack
+extends Control
+class_name Menu
 
-var stack: Array[Menu]
+@export var is_root: bool = false
