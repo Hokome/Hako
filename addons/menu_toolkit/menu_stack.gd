@@ -71,5 +71,3 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_echo(): return
 	if event.is_action("ui_cancel") and event.is_pressed():
 		back()
-	#if event.is_action("pause") and event.is_pressed():
-		#print("pause")

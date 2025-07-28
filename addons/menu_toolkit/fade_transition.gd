@@ -4,7 +4,8 @@ class_name FadeMenuTransition
 @export var time: float
 
 func transition(menu: Menu, show: bool) -> void:
-	var target := menu.modulate
+	var original := menu.modulate
+	var target := original
 	if show:
 		menu.modulate.a = 0.0
 		menu.visible = true
@@ -16,5 +17,6 @@ func transition(menu: Menu, show: bool) -> void:
 	
 	await tweener.finished
 	super(menu, show)
+	menu.modulate = original
 
 func is_simultaneous() -> bool: return false

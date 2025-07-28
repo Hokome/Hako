@@ -11,21 +11,28 @@ func _ready() -> void:
 	if !transition:
 		transition = menu_stack.NO_TRANSITION
 
-func toggle_pause() -> void:
+func toggle_pause() -> bool:
 	var tree := get_tree()
 	tree.paused = !tree.paused
+	return tree.paused
 
 func _unhandled_input(event: InputEvent) -> void:
 	if !enabled: return
 	if event.is_echo() or !event.is_pressed():
 		return
 	if event.is_action("pause"):
-		menu_stack.navigate(self, true, MenuStack.NO_TRANSITION)
+		var paused := toggle_pause()
+		if paused:
+			menu_stack.navigate(self, true, transition)
+		else:
+			menu_stack.back(transition)
+		
 		accept_event()
 
 func back_to_main() -> void:
 	await menu_stack.navigate(menu_stack.starting_menu, true, transition)
 	if game_node:
 		game_node.queue_free()
+	get_tree().paused = false
 	
 	enabled = false
