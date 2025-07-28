@@ -68,3 +68,7 @@ func transition_menu(menu: Menu, show: bool, transition: MenuTransition) -> void
 	else:
 		@warning_ignore("redundant_await")
 		await transition.transition(menu, show)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action("ui_cancel") and event.is_pressed():
+		back()

@@ -1,9 +1,8 @@
 extends BaseButton
-class_name BackButton
+class_name GlobalBackButton
 
 func _ready() -> void:
 	pressed.connect(back)
 
 func back() -> void:
-	if MenuStack.main:
-		MenuStack.main.back()
+	menu_stack.back()

@@ -11,10 +11,18 @@ config_version=5
 [application]
 
 config/name="Hako"
-run/main_scene="uid://bkjj3dcssx7jh"
+run/main_scene="uid://ck57vnnea6kid"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+menu_stack="*res://addons/menu_toolkit/main_menu_stack.tscn"
 
 [editor]
 
 naming/node_name_casing=2
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/menu_toolkit/plugin.cfg")

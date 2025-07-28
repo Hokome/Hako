@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkjj3dcssx7jh"]
+
+[ext_resource type="Script" uid="uid://b3vfbdwkhar8y" path="res://addons/menu_toolkit/menu_stack.gd" id="1_dbs2n"]
+[ext_resource type="Script" uid="uid://dmtt6frn8ij15" path="res://addons/menu_toolkit/fade_transition.gd" id="2_vyp5h"]
+[ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://addons/menu_toolkit/menu.gd" id="3_576ys"]
+[ext_resource type="Script" uid="uid://bfm3hms78vpvb" path="res://addons/menu_toolkit/global_navigation_button.gd" id="4_4fj70"]
+[ext_resource type="Script" uid="uid://c6im1db62ex4f" path="res://addons/menu_toolkit/global_back_button.gd" id="5_c5q08"]
+
+[node name="menu_stack" type="Node" node_paths=PackedStringArray("starting_menu", "default_transition")]
+script = ExtResource("1_dbs2n")
+starting_menu = NodePath("main_menu")
+default_transition = NodePath("fade_menu_transition")
+
+[node name="fade_menu_transition" type="Node" parent="."]
+script = ExtResource("2_vyp5h")
+time = 0.4
+metadata/_custom_type_script = "uid://dmtt6frn8ij15"
+
+[node name="main_menu" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_576ys")
+is_root = true
+
+[node name="settings" type="Button" parent="main_menu" node_paths=PackedStringArray("navigate_to")]
+layout_mode = 2
+text = "Settings"
+script = ExtResource("4_4fj70")
+navigate_to = NodePath("../../settings")
+
+[node name="settings" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -29.0
+offset_right = 72.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_576ys")
+
+[node name="label" type="Label" parent="settings"]
+layout_mode = 2
+text = "Settings"
+
+[node name="main" type="Button" parent="settings" node_paths=PackedStringArray("navigate_to")]
+layout_mode = 2
+text = "Main"
+script = ExtResource("4_4fj70")
+navigate_to = NodePath("../../main_menu")
+overwrite = true
+
+[node name="back" type="Button" parent="settings"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("5_c5q08")
+
+[node name="test_menu2" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -29.0
+offset_right = 72.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_576ys")
+
+[node name="label" type="Label" parent="test_menu2"]
+layout_mode = 2
+text = "Another test"
+
+[node name="back" type="Button" parent="test_menu2"]
+layout_mode = 2
+text = "Back"
+script = ExtResource("5_c5q08")
+
+[node name="navigate" type="Button" parent="test_menu2" node_paths=PackedStringArray("navigate_to")]
+layout_mode = 2
+text = "Second"
+script = ExtResource("4_4fj70")
+navigate_to = NodePath("../../settings")
