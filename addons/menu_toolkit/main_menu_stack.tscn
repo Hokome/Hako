@@ -1,13 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkjj3dcssx7jh"]
+[gd_scene load_steps=10 format=3 uid="uid://bkjj3dcssx7jh"]
 
 [ext_resource type="Script" uid="uid://b3vfbdwkhar8y" path="res://addons/menu_toolkit/menu_stack.gd" id="1_dbs2n"]
 [ext_resource type="Script" uid="uid://dmtt6frn8ij15" path="res://addons/menu_toolkit/fade_transition.gd" id="2_vyp5h"]
 [ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://addons/menu_toolkit/menu.gd" id="3_576ys"]
 [ext_resource type="Script" uid="uid://bfm3hms78vpvb" path="res://addons/menu_toolkit/global_navigation_button.gd" id="4_4fj70"]
 [ext_resource type="Script" uid="uid://hjxfd6e83py3" path="res://addons/menu_toolkit/quit_button.gd" id="5_576ys"]
+[ext_resource type="Script" uid="uid://dyt2t3ixf03y" path="res://addons/menu_toolkit/play_button.gd" id="5_c5q08"]
 [ext_resource type="PackedScene" uid="uid://vpwlxpkte3ot" path="res://addons/menu_toolkit/settings_menu.tscn" id="5_vyp5h"]
+[ext_resource type="PackedScene" uid="uid://b2gmj0sah4o26" path="res://game.tscn" id="6_3yhae"]
+[ext_resource type="PackedScene" uid="uid://disr6exy5u5ya" path="res://addons/menu_toolkit/pause_menu.tscn" id="10_3yhae"]
 
-[node name="menu_stack" type="Node" node_paths=PackedStringArray("starting_menu", "default_transition")]
+[node name="menu_stack" type="CanvasLayer" node_paths=PackedStringArray("starting_menu", "default_transition")]
 script = ExtResource("1_dbs2n")
 starting_menu = NodePath("main_menu")
 default_transition = NodePath("fade_menu_transition")
@@ -32,16 +35,24 @@ grow_vertical = 2
 script = ExtResource("3_576ys")
 is_root = true
 
+[node name="play" type="Button" parent="main_menu"]
+layout_mode = 2
+text = "Play"
+script = ExtResource("5_c5q08")
+game_scene = ExtResource("6_3yhae")
+
 [node name="settings" type="Button" parent="main_menu" node_paths=PackedStringArray("navigate_to")]
 layout_mode = 2
 text = "Settings"
 script = ExtResource("4_4fj70")
-navigate_to = NodePath("../../settings")
+navigate_to = NodePath("../../settings_menu")
 
 [node name="quit" type="Button" parent="main_menu"]
 layout_mode = 2
 text = "Quit"
 script = ExtResource("5_576ys")
 
-[node name="settings" parent="." instance=ExtResource("5_vyp5h")]
+[node name="settings_menu" parent="." instance=ExtResource("5_vyp5h")]
 visible = false
+
+[node name="pause_menu" parent="." instance=ExtResource("10_3yhae")]

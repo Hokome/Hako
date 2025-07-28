@@ -1,7 +1,7 @@
 extends Node
 class_name MenuStack
 
-static var main: MenuStack
+static var NO_TRANSITION: MenuTransition = null
 
 @export var is_main: bool = true
 @export var starting_menu: Menu
@@ -9,14 +9,12 @@ static var main: MenuStack
 
 var _stack: Array[Menu]
 
-func _init() -> void:
-	if is_main:
-		main = self
-
 func _ready() -> void:
+	if !NO_TRANSITION:
+		NO_TRANSITION = MenuTransition.new()
+		add_child(NO_TRANSITION)
 	if !default_transition:
-		default_transition = MenuTransition.new()
-		add_child(default_transition)
+		default_transition = NO_TRANSITION
 	
 	for c in get_children():
 		if c is Menu:
@@ -28,9 +26,6 @@ func _ready() -> void:
 ## Go to the provided [param menu]. If [param overwrite] is true, it will erase
 ## the stack and make everything invisible
 func navigate(menu: Menu, overwrite: bool = false, transition: MenuTransition = null) -> void:
-	if !menu:
-		return
-	
 	if overwrite:
 		for m in _stack:
 			transition_menu(m, false, transition)
@@ -40,6 +35,8 @@ func navigate(menu: Menu, overwrite: bool = false, transition: MenuTransition = 
 			var last: Menu = _stack.back()
 			await transition_menu(last, false, transition)
 	
+	if !menu:
+		return
 	_stack.push_back(menu)
 	await transition_menu(menu, true, transition)
 
@@ -52,6 +49,7 @@ func back(transition: MenuTransition = null) -> Menu:
 		if menu.is_root:
 			_stack.push_back(menu)
 			return null
+		menu.accept_event()
 		await transition_menu(menu, false, transition)
 	if !_stack.is_empty():
 		var previous_menu: Menu = _stack.back()
