@@ -1,5 +1,5 @@
 extends BaseButton
-class_name PlayButton
+class_name SceneLoadButton
 
 @export var game_scene: PackedScene
 
