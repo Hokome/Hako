@@ -26,7 +26,7 @@ func _ready() -> void:
 func navigate(menu: Menu, overwrite: bool = false, transition: MenuTransition = null) -> void:
 	if overwrite:
 		for m in _stack:
-			transition_menu(m, false, transition)
+			await transition_menu(m, false, transition)
 		_stack.clear()
 	else:
 		if !_stack.is_empty():
@@ -70,6 +70,7 @@ func transition_menu(menu: Menu, show: bool, transition: MenuTransition) -> void
 		@warning_ignore("redundant_await")
 		await transition.transition(menu, show)
 	
+	menu.end_transition(show)
 	current_transition = null
 
 func _unhandled_input(event: InputEvent) -> void:
