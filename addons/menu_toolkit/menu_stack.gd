@@ -1,18 +1,16 @@
 extends Node
 class_name MenuStack
 
-static var NO_TRANSITION: MenuTransition = null
+static var NO_TRANSITION: MenuTransition = MenuTransition.new()
 
 @export var is_main: bool = true
 @export var starting_menu: Menu
 @export var default_transition: MenuTransition = null
 
 var _stack: Array[Menu]
+var current_transition: MenuTransition
 
 func _ready() -> void:
-	if !NO_TRANSITION:
-		NO_TRANSITION = MenuTransition.new()
-		add_child(NO_TRANSITION)
 	if !default_transition:
 		default_transition = NO_TRANSITION
 	
@@ -58,14 +56,21 @@ func back(transition: MenuTransition = null) -> Menu:
 	return menu
 
 func transition_menu(menu: Menu, show: bool, transition: MenuTransition) -> void:
+	if current_transition:
+		current_transition.fast_forward()
+	
 	if !transition:
 		transition = default_transition
+	
+	current_transition = transition
 	
 	if transition.is_simultaneous():
 		transition.transition(menu, show)
 	else:
 		@warning_ignore("redundant_await")
 		await transition.transition(menu, show)
+	
+	current_transition = null
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_echo(): return

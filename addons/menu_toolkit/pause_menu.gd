@@ -14,6 +14,12 @@ func _ready() -> void:
 func toggle_pause() -> bool:
 	var tree := get_tree()
 	tree.paused = !tree.paused
+	
+	if tree.paused:
+		menu_stack.navigate(self, true, transition)
+	else:
+		menu_stack.back(transition)
+	
 	return tree.paused
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -21,12 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_echo() or !event.is_pressed():
 		return
 	if event.is_action("pause"):
-		var paused := toggle_pause()
-		if paused:
-			menu_stack.navigate(self, true, transition)
-		else:
-			menu_stack.back(transition)
-		
+		toggle_pause()
 		accept_event()
 
 func back_to_main() -> void:

@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkjj3dcssx7jh"]
+[gd_scene load_steps=11 format=3 uid="uid://bkjj3dcssx7jh"]
 
 [ext_resource type="Script" uid="uid://b3vfbdwkhar8y" path="res://addons/menu_toolkit/menu_stack.gd" id="1_dbs2n"]
-[ext_resource type="Script" uid="uid://dmtt6frn8ij15" path="res://addons/menu_toolkit/fade_transition.gd" id="2_vyp5h"]
+[ext_resource type="Script" uid="uid://dmtt6frn8ij15" path="res://addons/menu_toolkit/fade_transition.gd" id="2_c5q08"]
 [ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://addons/menu_toolkit/menu.gd" id="3_576ys"]
 [ext_resource type="Script" uid="uid://bfm3hms78vpvb" path="res://addons/menu_toolkit/global_navigation_button.gd" id="4_4fj70"]
 [ext_resource type="Script" uid="uid://hjxfd6e83py3" path="res://addons/menu_toolkit/quit_button.gd" id="5_576ys"]
@@ -10,16 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://b2gmj0sah4o26" path="res://game.tscn" id="6_3yhae"]
 [ext_resource type="Script" uid="uid://d1j03hhqlt2oe" path="res://addons/menu_toolkit/pause_menu.gd" id="9_c5q08"]
 
-[node name="menu_stack" type="CanvasLayer" node_paths=PackedStringArray("starting_menu", "default_transition")]
+[sub_resource type="Resource" id="Resource_3yhae"]
+script = ExtResource("2_c5q08")
+time = 0.2
+metadata/_custom_type_script = "uid://dmtt6frn8ij15"
+
+[node name="menu_stack" type="CanvasLayer" node_paths=PackedStringArray("starting_menu")]
 process_mode = 3
 script = ExtResource("1_dbs2n")
 starting_menu = NodePath("main_menu")
-default_transition = NodePath("fade_menu_transition")
-
-[node name="fade_menu_transition" type="Node" parent="."]
-script = ExtResource("2_vyp5h")
-time = 0.4
-metadata/_custom_type_script = "uid://dmtt6frn8ij15"
+default_transition = SubResource("Resource_3yhae")
 
 [node name="main_menu" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -76,8 +76,19 @@ grow_vertical = 2
 [node name="vbox" type="VBoxContainer" parent="pause_menu/center"]
 layout_mode = 2
 
+[node name="resume" type="Button" parent="pause_menu/center/vbox"]
+layout_mode = 2
+text = "Resume"
+
+[node name="settings" type="Button" parent="pause_menu/center/vbox" node_paths=PackedStringArray("navigate_to")]
+layout_mode = 2
+text = "Settings"
+script = ExtResource("4_4fj70")
+navigate_to = NodePath("../../../../settings_menu")
+
 [node name="main_menu" type="Button" parent="pause_menu/center/vbox"]
 layout_mode = 2
 text = "Main menu"
 
+[connection signal="pressed" from="pause_menu/center/vbox/resume" to="pause_menu" method="toggle_pause"]
 [connection signal="pressed" from="pause_menu/center/vbox/main_menu" to="pause_menu" method="back_to_main"]
