@@ -19,7 +19,7 @@ script = ExtResource("1_dbs2n")
 starting_menu = NodePath("main_menu")
 default_transition = SubResource("Resource_3yhae")
 
-[node name="main_menu" type="VBoxContainer" parent="."]
+[node name="main_menu" type="VBoxContainer" parent="." node_paths=PackedStringArray("first_focus")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -33,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_576ys")
 is_root = true
+first_focus = NodePath("play")
 
 [node name="play" type="Button" parent="main_menu"]
 layout_mode = 2
@@ -53,7 +54,7 @@ script = ExtResource("5_576ys")
 [node name="settings_menu" parent="." instance=ExtResource("5_vyp5h")]
 visible = false
 
-[node name="pause_menu" type="Panel" parent="."]
+[node name="pause_menu" type="Panel" parent="." node_paths=PackedStringArray("first_focus")]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,6 +62,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_c5q08")
+first_focus = NodePath("center/vbox/resume")
 
 [node name="center" type="CenterContainer" parent="pause_menu"]
 layout_mode = 1
