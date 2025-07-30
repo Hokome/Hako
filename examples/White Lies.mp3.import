@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://db5ygfq66sjue"
+path="res://.godot/imported/White Lies.mp3-7fb73ffcced50c0cf6db72fc5d88cc49.mp3str"
+
+[deps]
+
+source_file="res://examples/White Lies.mp3"
+dest_files=["res://.godot/imported/White Lies.mp3-7fb73ffcced50c0cf6db72fc5d88cc49.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=110.0
+beat_count=0
+bar_beats=4
