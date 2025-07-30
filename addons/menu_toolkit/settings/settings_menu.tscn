@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://vpwlxpkte3ot"]
+[gd_scene load_steps=6 format=3 uid="uid://vpwlxpkte3ot"]
 
-[ext_resource type="Script" uid="uid://c23m4opc65sss" path="res://addons/menu_toolkit/settings_menu.gd" id="1_s7i0b"]
-[ext_resource type="Script" uid="uid://c6im1db62ex4f" path="res://addons/menu_toolkit/global_back_button.gd" id="3_mkvfc"]
+[ext_resource type="Script" uid="uid://c23m4opc65sss" path="res://addons/menu_toolkit/settings/settings_menu.gd" id="1_s7i0b"]
+[ext_resource type="Script" uid="uid://bhlx1ys3h2ffh" path="res://addons/menu_toolkit/settings/audio_settings_tab.gd" id="2_dabkl"]
+[ext_resource type="Script" uid="uid://c6im1db62ex4f" path="res://addons/menu_toolkit/widgets/global_back_button.gd" id="3_mkvfc"]
+[ext_resource type="PackedScene" uid="uid://d2sr3meggpias" path="res://addons/menu_toolkit/settings/audio_slider.tscn" id="3_wr0vy"]
+[ext_resource type="PackedScene" uid="uid://cmbeovt7dogj7" path="res://addons/menu_toolkit/settings/audio_label.tscn" id="4_fop1w"]
 
 [node name="settings" type="PanelContainer"]
 anchors_preset = 8
@@ -29,14 +32,17 @@ custom_minimum_size = Vector2(240, 280)
 layout_mode = 2
 current_tab = 0
 
-[node name="General" type="Control" parent="margin/vbox/tabs"]
+[node name="Audio" type="MarginContainer" parent="margin/vbox/tabs" node_paths=PackedStringArray("slider_parent")]
 layout_mode = 2
+script = ExtResource("2_dabkl")
+audio_slider_scene = ExtResource("3_wr0vy")
+slider_label_scene = ExtResource("4_fop1w")
+slider_parent = NodePath("vbox")
 metadata/_tab_index = 0
 
-[node name="Audio" type="Control" parent="margin/vbox/tabs"]
-visible = false
+[node name="vbox" type="GridContainer" parent="margin/vbox/tabs/Audio"]
 layout_mode = 2
-metadata/_tab_index = 1
+columns = 2
 
 [node name="control_buttons" type="HBoxContainer" parent="margin/vbox"]
 layout_mode = 2

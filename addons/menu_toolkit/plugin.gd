@@ -1,6 +1,6 @@
 @tool
 extends EditorPlugin
-class_name MenuBox
+class_name MenuToolkit
 
 const PAUSE_ACTION_NAME := "pause"
 const AUTOLOAD_NAME := "menu_stack"
@@ -17,6 +17,9 @@ func _enter_tree() -> void:
 	InputMap.action_add_event(PAUSE_ACTION_NAME, gamepad_event)
 	
 	add_autoload_singleton(AUTOLOAD_NAME, "res://addons/menu_toolkit/main_menu_stack.tscn")
+	
+	if !ResourceLoader.exists("res://default_bus_layout.tres"):
+		ResourceSaver.save(AudioBusLayout.new(), "res://default_bus_layout.tres")
 
 func _exit_tree() -> void:
 	InputMap.erase_action(PAUSE_ACTION_NAME)

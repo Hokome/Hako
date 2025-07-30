@@ -7,7 +7,9 @@ func _ready() -> void:
 	pressed.connect(play)
 
 func play() -> void:
-	if !game_scene: return
+	if !game_scene:
+		push_error("No scene was set for loading with button '%s'" % self)
+		return
 	
 	var scene := game_scene.instantiate()
 	await menu_stack.navigate(null, true)

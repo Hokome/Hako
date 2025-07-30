@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cmbeovt7dogj7"]
+
+[node name="audio_label" type="Label"]
+size_flags_vertical = 1
+text = "Audio"
+vertical_alignment = 1

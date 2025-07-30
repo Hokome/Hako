@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://bkjj3dcssx7jh"]
 
-[ext_resource type="Script" uid="uid://b3vfbdwkhar8y" path="res://addons/menu_toolkit/menu_stack.gd" id="1_dbs2n"]
+[ext_resource type="Script" uid="uid://b3vfbdwkhar8y" path="res://addons/menu_toolkit/core/menu_stack.gd" id="1_dbs2n"]
 [ext_resource type="Script" uid="uid://dmtt6frn8ij15" path="res://addons/menu_toolkit/fade_transition.gd" id="2_c5q08"]
-[ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://addons/menu_toolkit/menu.gd" id="3_576ys"]
-[ext_resource type="Script" uid="uid://bfm3hms78vpvb" path="res://addons/menu_toolkit/global_navigation_button.gd" id="4_4fj70"]
-[ext_resource type="Script" uid="uid://hjxfd6e83py3" path="res://addons/menu_toolkit/quit_button.gd" id="5_576ys"]
-[ext_resource type="PackedScene" uid="uid://vpwlxpkte3ot" path="res://addons/menu_toolkit/settings_menu.tscn" id="5_vyp5h"]
+[ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://addons/menu_toolkit/core/menu.gd" id="3_576ys"]
+[ext_resource type="Script" uid="uid://bfm3hms78vpvb" path="res://addons/menu_toolkit/widgets/global_navigation_button.gd" id="4_4fj70"]
+[ext_resource type="Script" uid="uid://hjxfd6e83py3" path="res://addons/menu_toolkit/widgets/quit_button.gd" id="5_576ys"]
+[ext_resource type="PackedScene" uid="uid://vpwlxpkte3ot" path="res://addons/menu_toolkit/settings/settings_menu.tscn" id="5_vyp5h"]
 [ext_resource type="Script" uid="uid://d1j03hhqlt2oe" path="res://addons/menu_toolkit/pause_menu.gd" id="9_c5q08"]
 
 [sub_resource type="Resource" id="Resource_3yhae"]

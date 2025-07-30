@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2gmj0sah4o26"]
 
-[ext_resource type="Script" uid="uid://hmm3qf52xscn" path="res://label_move.gd" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://hmm3qf52xscn" path="res://examples/label_move.gd" id="1_80nbo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mwb40"]
 font_size = 80

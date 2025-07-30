@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck57vnnea6kid"]
+
+[ext_resource type="Script" uid="uid://7nlvuucyxeca" path="res://empty.gd" id="1_6uqi0"]
+[ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://addons/menu_toolkit/core/menu.gd" id="2_ppyta"]
+[ext_resource type="Script" uid="uid://dyt2t3ixf03y" path="res://addons/menu_toolkit/widgets/scene_load_button.gd" id="3_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://b2gmj0sah4o26" path="res://examples/game.tscn" id="4_ppyta"]
+[ext_resource type="PackedScene" uid="uid://vi70dh8dp64p" path="res://examples/audio_test.tscn" id="5_ykrsh"]
+
+[node name="test" type="Node"]
+script = ExtResource("1_6uqi0")
+
+[node name="examples" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ppyta")
+
+[node name="movement" type="Button" parent="examples"]
+layout_mode = 2
+text = "Movement"
+script = ExtResource("3_ykrsh")
+game_scene = ExtResource("4_ppyta")
+
+[node name="audio" type="Button" parent="examples"]
+layout_mode = 2
+text = "Audio"
+script = ExtResource("3_ykrsh")
+game_scene = ExtResource("5_ykrsh")
