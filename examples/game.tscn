@@ -1,20 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2gmj0sah4o26"]
 
-[ext_resource type="Script" uid="uid://hmm3qf52xscn" path="res://examples/label_move.gd" id="1_80nbo"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_mwb40"]
-font_size = 80
+[ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="1_sj742"]
+[ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://examples/basic_movement.gd" id="2_tbg0n"]
 
 [node name="game" type="Node2D"]
 
-[node name="label" type="Label" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Welcome"
-label_settings = SubResource("LabelSettings_mwb40")
-script = ExtResource("1_80nbo")
+[node name="sprite_2d" type="Sprite2D" parent="."]
+texture = ExtResource("1_sj742")
+script = ExtResource("2_tbg0n")
 
 [node name="camera_2d" type="Camera2D" parent="."]

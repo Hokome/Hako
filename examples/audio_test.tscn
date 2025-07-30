@@ -13,7 +13,7 @@ autoplay = true
 bus = &"Music"
 playback_type = 1
 
-[node name="audio_stream_player_2d" type="AudioStreamPlayer2D" parent="."]
+[node name="sfx_player" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_s3srk")
 bus = &"SFX"
 script = ExtResource("2_66j3y")
