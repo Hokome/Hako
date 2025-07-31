@@ -19,7 +19,8 @@ func _ready() -> void:
 		grid.add_child(rg.label)
 		
 		for i in grid.columns - 1:
-			var button: Button = button_scene.instantiate()
+			var button: RemapButton = button_scene.instantiate()
+			button.index = i
 			grid.add_child(button)
 			rg.register_button(button)
 			button.focus_exited.connect(button_focused.bind(null))
