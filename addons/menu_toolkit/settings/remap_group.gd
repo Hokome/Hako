@@ -15,8 +15,9 @@ var action_name: String:
 func refresh_events() -> void:
 	set_disabled(false)
 	var events := InputMap.action_get_events(action_name)
-	for i in events.size():
-		if buttons.size() <= i:
+	for i in buttons.size():
+		if events.size() <= i:
+			buttons[i].text = ""
 			break
 		buttons[i].text = events[i].as_text().replace(" (Physical)", "")
 

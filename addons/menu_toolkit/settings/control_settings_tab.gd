@@ -51,5 +51,9 @@ func button_focused(button: RemapButton) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if !listening || !event.is_pressed(): return
-	if event is InputEventMouseButton or InputEventJoypadButton or InputEventKey:
+	if event.is_action("cancel_remap"):
+		focused_button.assign(null)
+		accept_event()
+	elif event is InputEventMouseButton or InputEventJoypadButton or InputEventKey:
 		focused_button.assign(event)
+		accept_event()
