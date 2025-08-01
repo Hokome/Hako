@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2gmj0sah4o26"]
+
+[ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://addons/entity_toolkit/player_2d.gd" id="1_shnn6"]
+[ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="2_3d44o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3d44o"]
+radius = 63.3877
+
+[node name="game" type="Node2D"]
+
+[node name="camera_2d" type="Camera2D" parent="."]
+
+[node name="player_2d" type="CharacterBody2D" parent="."]
+script = ExtResource("1_shnn6")
+base_speed = 240.0
+metadata/_custom_type_script = "uid://bxiklrsxn3xcm"
+
+[node name="sprite_2d" type="Sprite2D" parent="player_2d"]
+texture = ExtResource("2_3d44o")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="player_2d"]
+shape = SubResource("CircleShape2D_3d44o")
