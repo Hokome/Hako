@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2gmj0sah4o26"]
+[gd_scene load_steps=5 format=3 uid="uid://b2gmj0sah4o26"]
 
 [ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://addons/entity_toolkit/player_2d.gd" id="1_shnn6"]
 [ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="2_3d44o"]
+[ext_resource type="Script" uid="uid://pd4mep5e0wo2" path="res://addons/combat_toolkit/capped_int.gd" id="3_kgtcu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3d44o"]
 radius = 63.3877
@@ -20,3 +21,8 @@ texture = ExtResource("2_3d44o")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="player_2d"]
 shape = SubResource("CircleShape2D_3d44o")
+
+[node name="health" type="Node" parent="player_2d"]
+script = ExtResource("3_kgtcu")
+max_value = 100
+metadata/_custom_type_script = "uid://pd4mep5e0wo2"
