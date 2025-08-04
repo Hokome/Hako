@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2gmj0sah4o26"]
+[gd_scene load_steps=9 format=3 uid="uid://b2gmj0sah4o26"]
 
 [ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://addons/entity_toolkit/player_2d.gd" id="1_shnn6"]
 [ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="2_3d44o"]
 [ext_resource type="Script" uid="uid://pd4mep5e0wo2" path="res://addons/combat_toolkit/capped_int.gd" id="3_kgtcu"]
+[ext_resource type="Script" uid="uid://s3yrms1tsgod" path="res://addons/interaction_toolkit/interaction_target_2d.gd" id="4_o48wq"]
+[ext_resource type="Script" uid="uid://crjbxxy2lb82b" path="res://addons/interaction_toolkit/interaction_origin_2d.gd" id="4_oqids"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3d44o"]
 radius = 63.3877
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqids"]
+radius = 42.107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o48wq"]
+radius = 168.434
 
 [node name="game" type="Node2D"]
 
@@ -21,8 +29,28 @@ texture = ExtResource("2_3d44o")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="player_2d"]
 shape = SubResource("CircleShape2D_3d44o")
+metadata/_edit_lock_ = true
 
 [node name="health" type="Node" parent="player_2d"]
 script = ExtResource("3_kgtcu")
 max_value = 100
 metadata/_custom_type_script = "uid://pd4mep5e0wo2"
+
+[node name="interaction_origin_2d" type="Area2D" parent="player_2d"]
+script = ExtResource("4_oqids")
+metadata/_custom_type_script = "uid://crjbxxy2lb82b"
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="player_2d/interaction_origin_2d"]
+shape = SubResource("CircleShape2D_oqids")
+
+[node name="interaction_target_2d" type="Area2D" parent="."]
+position = Vector2(-364, -128)
+script = ExtResource("4_o48wq")
+metadata/_custom_type_script = "uid://s3yrms1tsgod"
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="interaction_target_2d"]
+shape = SubResource("CircleShape2D_o48wq")
+
+[node name="sprite_2d" type="Sprite2D" parent="interaction_target_2d"]
+self_modulate = Color(1, 0.48, 0.48, 1)
+texture = ExtResource("2_3d44o")

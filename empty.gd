@@ -5,3 +5,4 @@ func _ready() -> void:
 	var example_menu := $examples
 	example_menu.reparent(menu_stack)
 	menu_stack.get_node("main_menu/play").navigate_to = example_menu
+	$network_room_menu.reparent(menu_stack)

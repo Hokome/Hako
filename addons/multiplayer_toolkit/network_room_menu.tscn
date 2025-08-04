@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://slt057csq47n"]
+
+[ext_resource type="Script" uid="uid://n5xwrpqn0vtn" path="res://addons/multiplayer_toolkit/network_room_menu.gd" id="1_0yayl"]
+
+[node name="network_menu" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0yayl")
+
+[node name="vbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="players" type="HBoxContainer" parent="vbox"]
+layout_mode = 2

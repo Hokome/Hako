@@ -25,7 +25,7 @@ naming/node_name_casing=2
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/combat_toolkit/plugin.cfg", "res://addons/entity_toolkit/plugin.cfg", "res://addons/menu_toolkit/plugin.cfg")
+enabled=PackedStringArray("res://addons/combat_toolkit/plugin.cfg", "res://addons/entity_toolkit/plugin.cfg", "res://addons/interaction_toolkit/plugin.cfg", "res://addons/menu_toolkit/plugin.cfg")
 
 [gui]
 
