@@ -6,7 +6,7 @@ class_name ControlSettingsTab
 @export var label_scene: PackedScene
 @export var button_scene: PackedScene
 
-var remap_groups: Array[RemapGroup] = []
+var remap_groups: Array[RemapGroup]
 var focused_button: RemapButton = null
 var listening: bool
 
@@ -28,6 +28,10 @@ func _ready() -> void:
 		
 		rg.action_name = action_name
 		remap_groups.push_back(rg)
+
+func refresh() -> void:
+	for g in remap_groups:
+		g.refresh_events()
 
 func listen_input(remap_button: RemapButton) -> void:
 	remap_button.release_focus()

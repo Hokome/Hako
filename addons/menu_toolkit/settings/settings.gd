@@ -29,6 +29,8 @@ static func make_default() -> Settings:
 	
 	for action_name in ACTION_WHITELIST:
 		var events := InputMap.action_get_events(action_name)
+		
+		settings.remaps[action_name] = events
 	
 	return settings
 

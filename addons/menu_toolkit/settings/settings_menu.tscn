@@ -83,6 +83,7 @@ text = "Confirm"
 script = ExtResource("3_mkvfc")
 
 [connection signal="settings_refreshed" from="." to="margin/vbox/tabs/Audio" method="refresh_settings"]
+[connection signal="settings_refreshed" from="." to="margin/vbox/tabs/Controls" method="refresh"]
 [connection signal="pressed" from="margin/vbox/control_buttons/back" to="." method="cancel"]
 [connection signal="pressed" from="margin/vbox/control_buttons/reset" to="." method="reset_settings"]
 [connection signal="pressed" from="margin/vbox/control_buttons/confirm" to="." method="save_settings"]
