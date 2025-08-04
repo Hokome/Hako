@@ -53,7 +53,6 @@ visible = false
 layout_mode = 2
 script = ExtResource("5_heogk")
 grid = NodePath("grid")
-configurable_controls = PackedStringArray("move_left", "move_right", "move_up", "move_down")
 label_scene = ExtResource("6_pu5n7")
 button_scene = ExtResource("7_ln7x4")
 metadata/_tab_index = 1
@@ -83,4 +82,7 @@ size_flags_horizontal = 3
 text = "Confirm"
 script = ExtResource("3_mkvfc")
 
+[connection signal="settings_refreshed" from="." to="margin/vbox/tabs/Audio" method="refresh_settings"]
+[connection signal="pressed" from="margin/vbox/control_buttons/back" to="." method="cancel"]
+[connection signal="pressed" from="margin/vbox/control_buttons/reset" to="." method="reset_settings"]
 [connection signal="pressed" from="margin/vbox/control_buttons/confirm" to="." method="save_settings"]

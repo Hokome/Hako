@@ -2,7 +2,6 @@ extends Control
 class_name ControlSettingsTab
 
 @export var grid: GridContainer
-@export var configurable_controls: PackedStringArray
 
 @export var label_scene: PackedScene
 @export var button_scene: PackedScene
@@ -12,7 +11,7 @@ var focused_button: RemapButton = null
 var listening: bool
 
 func _ready() -> void:
-	for action_name in configurable_controls:
+	for action_name in Settings.ACTION_WHITELIST:
 		var rg := RemapGroup.new()
 		rg.control_settings_tab = self
 		rg.label = label_scene.instantiate()
