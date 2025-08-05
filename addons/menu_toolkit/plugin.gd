@@ -20,8 +20,8 @@ func _enter_tree() -> void:
 	#gamepad_event.button_index = JOY_BUTTON_START
 	#InputMap.action_add_event(PAUSE_ACTION_NAME, gamepad_event)
 	
-	add_autoload_singleton(MENU_AUTOLOAD, path("main_menu_stack.tscn"))
 	add_autoload_singleton(SETTINGS_AUTOLOAD, path("settings/settings_loader.tscn"))
+	add_autoload_singleton(MENU_AUTOLOAD, path("main_menu_stack.tscn"))
 	
 	if !ResourceLoader.exists("res://default_bus_layout.tres"):
 		var bus_layout := AudioBusLayout.new()

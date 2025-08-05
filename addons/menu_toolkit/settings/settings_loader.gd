@@ -19,9 +19,9 @@ var current: Settings = null
 	"move_down",
 ]
 
-func _init() -> void:
+func _ready() -> void:
 	default = make_default()
-	current = load_file()
+	load_file()
 
 func make_default() -> Settings:
 	var settings := Settings.new()
@@ -38,20 +38,18 @@ func make_default() -> Settings:
 	
 	return settings
 
-func load_file() -> Settings:
+func load_file() -> void:
 	if !FileAccess.file_exists(save_path):
 		return default.clone()
 	var file := FileAccess.get_file_as_string(save_path)
 	var dict: Dictionary = str_to_var(file)
 	
-	var settings := Settings.new()
+	current = Settings.new()
 	
-	settings.volumes = dict.get("volumes", default.volumes)
-	settings.remaps = dict.get("remaps", default.remaps)
+	current.volumes = dict.get("volumes", default.volumes)
+	current.remaps = dict.get("remaps", default.remaps)
 	
-	settings.apply()
-	
-	return settings
+	apply()
 
 func save_file() -> void:
 	var file := FileAccess.open(save_path, FileAccess.WRITE)
@@ -61,14 +59,25 @@ func save_file() -> void:
 	}))
 
 func apply() -> void:
-	for bus_name in current.volumes:
+	var s := current
+	for bus_name in s.volumes:
 		var bus_idx := AudioServer.get_bus_index(bus_name)
 		if bus_idx < 0:
 			push_error("No audio bus named %s" % bus_name)
 			return
-		AudioServer.set_bus_volume_linear(bus_idx, current.volumes[bus_name])
+		AudioServer.set_bus_volume_linear(bus_idx, s.volumes[bus_name])
 	
-	for action_name in current.remaps:
+	for action_name in s.remaps:
 		InputMap.action_erase_events(action_name)
-		for event in current.remaps[action_name]:
+		for event in s.remaps[action_name]:
 			InputMap.action_add_event(action_name, event)
+	
+	var vsync := DisplayServer.VSYNC_DISABLED
+	if s.vsync:
+		vsync = DisplayServer.VSYNC_ENABLED
+	DisplayServer.window_set_vsync_mode(vsync)
+	Engine.max_fps = s.fps
+	
+	if !get_tree().root.is_embedded():
+		DisplayServer.window_set_mode(s.window_mode)
+		DisplayServer.window_set_size(s.resolution)
