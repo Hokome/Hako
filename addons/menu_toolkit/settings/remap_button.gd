@@ -11,5 +11,5 @@ func assign(event: InputEvent) -> void:
 		InputMap.action_erase_event(group.action_name, existing_events[index])
 	if event:
 		InputMap.action_add_event(group.action_name, event)
-	Settings.current.remaps[group.action_name] = InputMap.action_get_events(group.action_name)
+	settings.current.remaps[group.action_name] = InputMap.action_get_events(group.action_name)
 	control_settings_tab.end_listen()

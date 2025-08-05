@@ -11,7 +11,7 @@ var focused_button: RemapButton = null
 var listening: bool
 
 func _ready() -> void:
-	for action_name in Settings.ACTION_WHITELIST:
+	for action_name in settings.action_whitelist:
 		var rg := RemapGroup.new()
 		rg.control_settings_tab = self
 		rg.label = label_scene.instantiate()

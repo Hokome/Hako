@@ -10,19 +10,19 @@ func _ready() -> void:
 
 func _on_visible():
 	if visible:
-		backup = Settings.current.clone()
+		backup = settings.current.clone()
 		settings_refreshed.emit()
 
 func cancel() -> void:
-	Settings.current = backup
-	Settings.current.apply()
+	settings.current = backup
+	settings.apply()
 
 func reset_settings() -> void:
-	Settings.current = Settings.default.clone()
-	Settings.current.apply()
+	settings.current = settings.default.clone()
+	settings.apply()
 	settings_refreshed.emit()
 
 func save_settings() -> void:
 	backup = null
-	Settings.current.apply()
-	Settings.current.save_file()
+	settings.apply()
+	settings.save_file()

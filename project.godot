@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 menu_stack="*res://addons/menu_toolkit/main_menu_stack.tscn"
+settings="*res://addons/menu_toolkit/settings/settings_loader.tscn"
 
 [editor]
 
