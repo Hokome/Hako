@@ -71,7 +71,7 @@ size_flags_horizontal = 3
 
 [node name="fps_label" parent="margin/vbox/tabs/Display/grid" instance=ExtResource("4_fop1w")]
 layout_mode = 2
-text = "Max FPS"
+text = "Max framerate"
 
 [node name="fps" type="OptionButton" parent="margin/vbox/tabs/Display/grid"]
 layout_mode = 2

@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func _on_visible():
 	if visible:
-		backup = settings.current.clone()
+		backup = settings.current.duplicate()
 		settings_refreshed.emit()
 
 func cancel() -> void:
@@ -18,7 +18,7 @@ func cancel() -> void:
 	settings.apply()
 
 func reset_settings() -> void:
-	settings.current = settings.default.clone()
+	settings.current = settings.default.duplicate()
 	settings.apply()
 	settings_refreshed.emit()
 

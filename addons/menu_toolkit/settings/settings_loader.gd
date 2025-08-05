@@ -22,9 +22,9 @@ var current: Settings = null
 @export var available_framerates: PackedInt32Array = [
 	30,
 	60,
-	90,
 	120,
 	144,
+	240,
 ]
 
 func _enter_tree() -> void:
@@ -49,7 +49,7 @@ func make_default() -> Settings:
 
 func load_file() -> void:
 	if !FileAccess.file_exists(save_path):
-		current = default.clone()
+		current = default.duplicate()
 		return
 	
 	var file := FileAccess.get_file_as_string(save_path)
@@ -61,18 +61,22 @@ func load_file() -> void:
 	current.remaps = dict.get("remaps", default.remaps)
 	current.content_scale = dict.get("content_scale", default.content_scale)
 	current.window_mode = dict.get("window_mode", default.window_mode)
+	current.fps = dict.get("fps", default.fps)
 	current.vsync = dict.get("vsync", default.vsync)
 	
 	apply()
 
 func save_file() -> void:
 	var file := FileAccess.open(save_path, FileAccess.WRITE)
+	
+	# Storing as a dictionary to make migration easier
 	file.store_string(var_to_str({
 		"volumes": current.volumes,
 		"remaps": current.remaps,
 		"content_scale": current.content_scale,
 		"window_mode": current.window_mode,
-		"vsync": current.vsync
+		"fps": current.fps,
+		"vsync": current.vsync,
 	}))
 
 func apply() -> void:
@@ -95,6 +99,6 @@ func apply() -> void:
 	
 	var window := get_tree().root
 	window.content_scale_factor = s.content_scale
-
+	
 	if !window.is_embedded():
 		window.mode = s.window_mode

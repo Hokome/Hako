@@ -10,6 +10,11 @@ func _ready() -> void:
 	
 	scale_spin.value_changed.connect(set_content_scale)
 	
+	for fps in settings.available_framerates:
+		fps_dropdown.add_item(str(fps))
+	fps_dropdown.add_item("Unlimited")
+	fps_dropdown.item_selected.connect(select_framerate)
+	
 	window_dropdown.add_item("Windowed")
 	window_dropdown.add_item("Borderless")
 	window_dropdown.add_item("Fullscreen")
@@ -20,6 +25,11 @@ func refresh() -> void:
 	var s := settings.current
 	vsync_button.button_pressed = s.vsync
 	scale_spin.value = s.content_scale
+	
+	if s.fps == 0:
+		fps_dropdown.select(settings.available_framerates.size())
+	else:
+		fps_dropdown.select(settings.available_framerates.find(s.fps))
 	
 	# Offset useless window modes
 	var mode_index := s.window_mode
@@ -47,5 +57,11 @@ func select_mode(index: int) -> void:
 	if !get_tree().root.is_embedded():
 		get_tree().root.mode = settings.current.window_mode
 
-func select_framerate() -> void:
-	pass
+func select_framerate(index: int) -> void:
+	if index < settings.available_framerates.size():
+		settings.current.fps = settings.available_framerates[index]
+	else:
+		print(index)
+		settings.current.fps = 0
+	
+	Engine.max_fps = settings.current.fps

@@ -1,16 +1,10 @@
 extends Resource
 class_name Settings
 
-var volumes: Dictionary[String, float] = {}
-var remaps: Dictionary[String, Array] = {}
-var window_mode: int = Window.MODE_WINDOWED
-var content_scale: float = 1.0
-var fps: int = 60
-var vsync: bool = false
-
-func clone() -> Settings:
-	var new: Settings = self.duplicate()
-	new.volumes = self.volumes.duplicate(true)
-	new.remaps = self.remaps.duplicate(true)
-	
-	return new
+# They all need to be exported so duplication works
+@export var volumes: Dictionary[String, float] = {}
+@export var remaps: Dictionary[String, Array] = {}
+@export var window_mode: int = Window.MODE_WINDOWED
+@export var content_scale: float = 1.0
+@export var fps: int = 60
+@export var vsync: bool = false
