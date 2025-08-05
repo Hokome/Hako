@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c23m4opc65sss" path="res://addons/menu_toolkit/settings/settings_menu.gd" id="1_s7i0b"]
 [ext_resource type="Script" uid="uid://bhlx1ys3h2ffh" path="res://addons/menu_toolkit/settings/audio_settings_tab.gd" id="2_dabkl"]
+[ext_resource type="Script" uid="uid://cyqglhmkp5gjl" path="res://addons/menu_toolkit/settings/display_settings_tab.gd" id="2_pu5n7"]
 [ext_resource type="Script" uid="uid://c6im1db62ex4f" path="res://addons/menu_toolkit/widgets/global_back_button.gd" id="3_mkvfc"]
 [ext_resource type="PackedScene" uid="uid://d2sr3meggpias" path="res://addons/menu_toolkit/settings/audio_slider.tscn" id="3_wr0vy"]
-[ext_resource type="PackedScene" uid="uid://cmbeovt7dogj7" path="res://addons/menu_toolkit/settings/audio_label.tscn" id="4_fop1w"]
+[ext_resource type="PackedScene" uid="uid://cmbeovt7dogj7" path="res://addons/menu_toolkit/settings/setting_label.tscn" id="4_fop1w"]
 [ext_resource type="Script" uid="uid://df6tqfwbn0s00" path="res://addons/menu_toolkit/settings/control_settings_tab.gd" id="5_heogk"]
-[ext_resource type="PackedScene" uid="uid://ge1cusvvn0wb" path="res://addons/menu_toolkit/settings/controls_label.tscn" id="6_pu5n7"]
 [ext_resource type="PackedScene" uid="uid://dbcyrebevyy13" path="res://addons/menu_toolkit/settings/controls_button.tscn" id="7_ln7x4"]
 
 [node name="settings" type="PanelContainer" node_paths=PackedStringArray("first_focus")]
@@ -36,13 +36,63 @@ custom_minimum_size = Vector2(400, 280)
 layout_mode = 2
 current_tab = 0
 
+[node name="Display" type="MarginContainer" parent="margin/vbox/tabs" node_paths=PackedStringArray("scale_spin", "window_dropdown", "fps_dropdown", "vsync_button")]
+layout_mode = 2
+script = ExtResource("2_pu5n7")
+scale_spin = NodePath("grid/scale")
+window_dropdown = NodePath("grid/window")
+fps_dropdown = NodePath("grid/fps")
+vsync_button = NodePath("grid/vsync")
+metadata/_tab_index = 0
+
+[node name="grid" type="GridContainer" parent="margin/vbox/tabs/Display"]
+layout_mode = 2
+columns = 2
+
+[node name="scale_label" parent="margin/vbox/tabs/Display/grid" instance=ExtResource("4_fop1w")]
+layout_mode = 2
+text = "Content scale"
+
+[node name="scale" type="SpinBox" parent="margin/vbox/tabs/Display/grid"]
+layout_mode = 2
+size_flags_horizontal = 8
+min_value = 0.5
+max_value = 4.0
+step = 0.5
+value = 1.0
+
+[node name="window_label" parent="margin/vbox/tabs/Display/grid" instance=ExtResource("4_fop1w")]
+layout_mode = 2
+text = "Window mode"
+
+[node name="window" type="OptionButton" parent="margin/vbox/tabs/Display/grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="fps_label" parent="margin/vbox/tabs/Display/grid" instance=ExtResource("4_fop1w")]
+layout_mode = 2
+text = "Max FPS"
+
+[node name="fps" type="OptionButton" parent="margin/vbox/tabs/Display/grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="vsync_label" parent="margin/vbox/tabs/Display/grid" instance=ExtResource("4_fop1w")]
+layout_mode = 2
+text = "VSync"
+
+[node name="vsync" type="CheckButton" parent="margin/vbox/tabs/Display/grid"]
+layout_mode = 2
+size_flags_horizontal = 8
+
 [node name="Audio" type="MarginContainer" parent="margin/vbox/tabs" node_paths=PackedStringArray("slider_parent")]
+visible = false
 layout_mode = 2
 script = ExtResource("2_dabkl")
 audio_slider_scene = ExtResource("3_wr0vy")
 slider_label_scene = ExtResource("4_fop1w")
 slider_parent = NodePath("grid")
-metadata/_tab_index = 0
+metadata/_tab_index = 1
 
 [node name="grid" type="GridContainer" parent="margin/vbox/tabs/Audio"]
 layout_mode = 2
@@ -53,9 +103,9 @@ visible = false
 layout_mode = 2
 script = ExtResource("5_heogk")
 grid = NodePath("grid")
-label_scene = ExtResource("6_pu5n7")
+label_scene = ExtResource("4_fop1w")
 button_scene = ExtResource("7_ln7x4")
-metadata/_tab_index = 1
+metadata/_tab_index = 2
 
 [node name="grid" type="GridContainer" parent="margin/vbox/tabs/Controls"]
 layout_mode = 2
@@ -82,6 +132,7 @@ size_flags_horizontal = 3
 text = "Confirm"
 script = ExtResource("3_mkvfc")
 
+[connection signal="settings_refreshed" from="." to="margin/vbox/tabs/Display" method="refresh"]
 [connection signal="settings_refreshed" from="." to="margin/vbox/tabs/Audio" method="refresh_settings"]
 [connection signal="settings_refreshed" from="." to="margin/vbox/tabs/Controls" method="refresh"]
 [connection signal="pressed" from="margin/vbox/control_buttons/back" to="." method="cancel"]

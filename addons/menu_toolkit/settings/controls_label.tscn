@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://ge1cusvvn0wb"]
-
-[node name="controls_label" type="Label"]
-size_flags_vertical = 1
-text = "Action"
-vertical_alignment = 1

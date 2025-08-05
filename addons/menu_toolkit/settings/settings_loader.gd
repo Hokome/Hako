@@ -19,28 +19,39 @@ var current: Settings = null
 	"move_down",
 ]
 
-func _ready() -> void:
+@export var available_framerates: PackedInt32Array = [
+	30,
+	60,
+	90,
+	120,
+	144,
+]
+
+func _enter_tree() -> void:
 	default = make_default()
 	load_file()
 
 func make_default() -> Settings:
-	var settings := Settings.new()
-	
+	var s := Settings.new()
 	for bus_name in bus_whitelist:
 		var bus_index := AudioServer.get_bus_index(bus_name)
 		
-		settings.volumes[bus_name] = AudioServer.get_bus_volume_linear(bus_index)
+		s.volumes[bus_name] = AudioServer.get_bus_volume_linear(bus_index)
 	
 	for action_name in action_whitelist:
 		var events := InputMap.action_get_events(action_name)
 		
-		settings.remaps[action_name] = events
+		s.remaps[action_name] = events
 	
-	return settings
+	s.content_scale = get_tree().root.content_scale_factor
+	
+	return s
 
 func load_file() -> void:
 	if !FileAccess.file_exists(save_path):
-		return default.clone()
+		current = default.clone()
+		return
+	
 	var file := FileAccess.get_file_as_string(save_path)
 	var dict: Dictionary = str_to_var(file)
 	
@@ -48,6 +59,9 @@ func load_file() -> void:
 	
 	current.volumes = dict.get("volumes", default.volumes)
 	current.remaps = dict.get("remaps", default.remaps)
+	current.content_scale = dict.get("content_scale", default.content_scale)
+	current.window_mode = dict.get("window_mode", default.window_mode)
+	current.vsync = dict.get("vsync", default.vsync)
 	
 	apply()
 
@@ -56,6 +70,9 @@ func save_file() -> void:
 	file.store_string(var_to_str({
 		"volumes": current.volumes,
 		"remaps": current.remaps,
+		"content_scale": current.content_scale,
+		"window_mode": current.window_mode,
+		"vsync": current.vsync
 	}))
 
 func apply() -> void:
@@ -72,12 +89,12 @@ func apply() -> void:
 		for event in s.remaps[action_name]:
 			InputMap.action_add_event(action_name, event)
 	
-	var vsync := DisplayServer.VSYNC_DISABLED
-	if s.vsync:
-		vsync = DisplayServer.VSYNC_ENABLED
+	var vsync := DisplayServer.VSYNC_ENABLED if s.vsync else DisplayServer.VSYNC_DISABLED
 	DisplayServer.window_set_vsync_mode(vsync)
 	Engine.max_fps = s.fps
 	
-	if !get_tree().root.is_embedded():
-		DisplayServer.window_set_mode(s.window_mode)
-		DisplayServer.window_set_size(s.resolution)
+	var window := get_tree().root
+	window.content_scale_factor = s.content_scale
+
+	if !window.is_embedded():
+		window.mode = s.window_mode
