@@ -7,6 +7,7 @@ var backup: Settings = null
 
 func _ready() -> void:
 	visibility_changed.connect(_on_visible)
+	back_with_key.connect(cancel)
 
 func _on_visible():
 	if visible:

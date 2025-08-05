@@ -2,6 +2,7 @@ extends Control
 class_name Menu
 
 signal transitioned(shown: bool)
+signal back_with_key
 
 ## Prevent [method MenuStack.back] from hiding this menu.
 @export var is_root: bool = false

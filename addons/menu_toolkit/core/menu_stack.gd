@@ -48,7 +48,10 @@ func back(transition: MenuTransition = null) -> Menu:
 			_stack.push_back(menu)
 			return null
 		menu.accept_event()
+		if Input.is_action_just_pressed("ui_cancel"):
+			menu.back_with_key.emit()
 		await transition_menu(menu, false, transition)
+	
 	if !_stack.is_empty():
 		var previous_menu: Menu = _stack.back()
 		await transition_menu(previous_menu, true, transition)
