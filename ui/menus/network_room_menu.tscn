@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://slt057csq47n"]
 
-[ext_resource type="Script" uid="uid://n5xwrpqn0vtn" path="res://addons/multiplayer_toolkit/network_room_menu.gd" id="1_0yayl"]
+[ext_resource type="Script" uid="uid://n5xwrpqn0vtn" path="res://ui/menus/network_room_menu.gd" id="1_0yayl"]
 
 [node name="network_menu" type="CenterContainer"]
 anchors_preset = 15

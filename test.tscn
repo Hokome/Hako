@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://ck57vnnea6kid"]
 
 [ext_resource type="Script" uid="uid://7nlvuucyxeca" path="res://empty.gd" id="1_6uqi0"]
-[ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://addons/menu_toolkit/core/menu.gd" id="2_ppyta"]
-[ext_resource type="Script" uid="uid://dyt2t3ixf03y" path="res://addons/menu_toolkit/widgets/scene_load_button.gd" id="3_ykrsh"]
-[ext_resource type="PackedScene" uid="uid://b2gmj0sah4o26" path="res://examples/entity/game.tscn" id="4_ppyta"]
-[ext_resource type="Script" uid="uid://bfm3hms78vpvb" path="res://addons/menu_toolkit/widgets/global_navigation_button.gd" id="5_g14j6"]
+[ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://ui/core/menu.gd" id="2_ppyta"]
+[ext_resource type="Script" uid="uid://dyt2t3ixf03y" path="res://ui/widgets/scene_load_button.gd" id="3_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://b2gmj0sah4o26" path="res://examples/game.tscn" id="4_ppyta"]
+[ext_resource type="Script" uid="uid://bfm3hms78vpvb" path="res://ui/widgets/global_navigation_button.gd" id="5_g14j6"]
 [ext_resource type="PackedScene" uid="uid://vi70dh8dp64p" path="res://examples/audio_test.tscn" id="5_ykrsh"]
-[ext_resource type="PackedScene" uid="uid://slt057csq47n" path="res://addons/multiplayer_toolkit/network_room_menu.tscn" id="7_vbegm"]
+[ext_resource type="PackedScene" uid="uid://slt057csq47n" path="res://ui/menus/network_room_menu.tscn" id="7_vbegm"]
 
 [node name="test" type="Node"]
 script = ExtResource("1_6uqi0")

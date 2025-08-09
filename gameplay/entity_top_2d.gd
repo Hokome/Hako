@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Entity2D
+class_name EntityTop2D
 
 @export var base_speed: float
 

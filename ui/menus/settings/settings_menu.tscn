@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://vpwlxpkte3ot"]
 
-[ext_resource type="Script" uid="uid://c23m4opc65sss" path="res://addons/menu_toolkit/settings/settings_menu.gd" id="1_s7i0b"]
-[ext_resource type="Script" uid="uid://bhlx1ys3h2ffh" path="res://addons/menu_toolkit/settings/audio_settings_tab.gd" id="2_dabkl"]
-[ext_resource type="Script" uid="uid://cyqglhmkp5gjl" path="res://addons/menu_toolkit/settings/display_settings_tab.gd" id="2_pu5n7"]
-[ext_resource type="Script" uid="uid://c6im1db62ex4f" path="res://addons/menu_toolkit/widgets/global_back_button.gd" id="3_mkvfc"]
-[ext_resource type="PackedScene" uid="uid://d2sr3meggpias" path="res://addons/menu_toolkit/settings/audio_slider.tscn" id="3_wr0vy"]
-[ext_resource type="PackedScene" uid="uid://cmbeovt7dogj7" path="res://addons/menu_toolkit/settings/setting_label.tscn" id="4_fop1w"]
-[ext_resource type="Script" uid="uid://df6tqfwbn0s00" path="res://addons/menu_toolkit/settings/control_settings_tab.gd" id="5_heogk"]
-[ext_resource type="PackedScene" uid="uid://dbcyrebevyy13" path="res://addons/menu_toolkit/settings/controls_button.tscn" id="7_ln7x4"]
+[ext_resource type="Script" uid="uid://c23m4opc65sss" path="res://ui/menus/settings/settings_menu.gd" id="1_s7i0b"]
+[ext_resource type="Script" uid="uid://bhlx1ys3h2ffh" path="res://ui/menus/settings/audio_settings_tab.gd" id="2_dabkl"]
+[ext_resource type="Script" uid="uid://cyqglhmkp5gjl" path="res://ui/menus/settings/display_settings_tab.gd" id="2_pu5n7"]
+[ext_resource type="Script" uid="uid://c6im1db62ex4f" path="res://ui/widgets/global_back_button.gd" id="3_mkvfc"]
+[ext_resource type="PackedScene" uid="uid://d2sr3meggpias" path="res://ui/menus/settings/audio_slider.tscn" id="3_wr0vy"]
+[ext_resource type="PackedScene" uid="uid://cmbeovt7dogj7" path="res://ui/menus/settings/setting_label.tscn" id="4_fop1w"]
+[ext_resource type="Script" uid="uid://df6tqfwbn0s00" path="res://ui/menus/settings/control_settings_tab.gd" id="5_heogk"]
+[ext_resource type="PackedScene" uid="uid://dbcyrebevyy13" path="res://ui/menus/settings/controls_button.tscn" id="7_ln7x4"]
 
 [node name="settings" type="PanelContainer" node_paths=PackedStringArray("first_focus")]
 anchors_preset = 8

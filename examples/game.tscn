@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://b2gmj0sah4o26"]
 
-[ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://addons/entity_toolkit/player_2d.gd" id="1_shnn6"]
+[ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://gameplay/player_2d.gd" id="1_shnn6"]
 [ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="2_3d44o"]
-[ext_resource type="Script" uid="uid://pd4mep5e0wo2" path="res://addons/combat_toolkit/capped_int.gd" id="3_kgtcu"]
-[ext_resource type="Script" uid="uid://s3yrms1tsgod" path="res://addons/interaction_toolkit/interaction_target_2d.gd" id="4_o48wq"]
-[ext_resource type="Script" uid="uid://crjbxxy2lb82b" path="res://addons/interaction_toolkit/interaction_origin_2d.gd" id="4_oqids"]
+[ext_resource type="Script" uid="uid://pd4mep5e0wo2" path="res://util/capped_int.gd" id="3_kgtcu"]
+[ext_resource type="Script" uid="uid://s3yrms1tsgod" path="res://gameplay/interaction_target_2d.gd" id="4_o48wq"]
+[ext_resource type="Script" uid="uid://crjbxxy2lb82b" path="res://gameplay/interaction_origin_2d.gd" id="4_oqids"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3d44o"]
 radius = 63.3877
