@@ -8,6 +8,7 @@ signal value_zero
 @export var max_value: int:
 	set(val):
 		max_value = max(0, val)
+		max_value_changed.emit(max_value)
 		if value > max_value:
 			value = value
 

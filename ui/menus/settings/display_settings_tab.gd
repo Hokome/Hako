@@ -55,7 +55,7 @@ func select_mode(index: int) -> void:
 	
 	settings.current.window_mode = index
 	if !get_tree().root.is_embedded():
-		get_tree().root.mode = settings.current.window_mode
+		get_tree().root.mode = settings.current.window_mode as Window.Mode
 
 func select_framerate(index: int) -> void:
 	if index < settings.available_framerates.size():

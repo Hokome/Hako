@@ -8,15 +8,15 @@ func transition(menu: Menu, show: bool) -> void:
 	setup(menu, show)
 	
 	original_color = menu.modulate
-	var target := original_color
+	var target_color := original_color
 	if show:
-		target.a = original_color.a
+		target_color.a = original_color.a
 		menu.modulate.a = 0.0
 		menu.visible = true
 	else:
-		target.a = 0.0
+		target_color.a = 0.0
 	
-	tween.tween_property(menu, "modulate", target, time)
+	tween.tween_property(menu, "modulate", target_color, time)
 	
 	await tween.finished
 	finish()

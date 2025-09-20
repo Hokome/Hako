@@ -17,7 +17,7 @@ func refresh_settings() -> void:
 		slider.set_value_no_signal(settings.current.volumes[bus_name])
 
 func create_slider(bus_name: String) -> void:
-	var bus_idx := AudioServer.get_bus_index(bus_name)
+	#var bus_idx := AudioServer.get_bus_index(bus_name)
 	var label: Label = slider_label_scene.instantiate()
 	label.name = "label %s" % bus_name
 	label.text = bus_name

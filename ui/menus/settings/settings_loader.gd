@@ -101,4 +101,4 @@ func apply() -> void:
 	window.content_scale_factor = s.content_scale
 	
 	if !window.is_embedded():
-		window.mode = s.window_mode
+		window.mode = s.window_mode as Window.Mode
