@@ -11,7 +11,7 @@ func borrow(target: InteractionTarget2D) -> void:
 	visible = true
 	detach(current_target)
 	reparent(target)
-	position = Vector2.ZERO
+	position = target.indicator_offset
 	current_target = target
 	target.tree_exiting.connect(recall)
 

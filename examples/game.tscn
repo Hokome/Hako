@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2gmj0sah4o26"]
+[gd_scene load_steps=16 format=3 uid="uid://b2gmj0sah4o26"]
 
-[ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://gameplay/player_top_2d.gd" id="1_shnn6"]
+[ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://gameplay/entity/player_top_2d.gd" id="1_shnn6"]
 [ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="2_3d44o"]
-[ext_resource type="Script" uid="uid://dpr2lg8us3hgo" path="res://gameplay/pipe_value.gd" id="2_ecbbh"]
+[ext_resource type="Script" uid="uid://dpr2lg8us3hgo" path="res://gameplay/modifier/pipe_value.gd" id="2_ecbbh"]
 [ext_resource type="Script" uid="uid://pd4mep5e0wo2" path="res://util/capped_int.gd" id="3_kgtcu"]
-[ext_resource type="Script" uid="uid://s3yrms1tsgod" path="res://gameplay/interaction_target_2d.gd" id="4_o48wq"]
-[ext_resource type="Script" uid="uid://crjbxxy2lb82b" path="res://gameplay/interaction_origin_2d.gd" id="4_oqids"]
-[ext_resource type="PackedScene" uid="uid://ctm1xj4vu0dm1" path="res://gameplay/default_interaction_indicator.tscn" id="6_nbgvb"]
+[ext_resource type="Script" uid="uid://s3yrms1tsgod" path="res://gameplay/interaction/interaction_target_2d.gd" id="4_o48wq"]
+[ext_resource type="Script" uid="uid://crjbxxy2lb82b" path="res://gameplay/interaction/interaction_origin_2d.gd" id="4_oqids"]
+[ext_resource type="PackedScene" uid="uid://ctm1xj4vu0dm1" path="res://gameplay/interaction/default_interaction_indicator.tscn" id="6_nbgvb"]
+[ext_resource type="Script" uid="uid://cdbni102aaavo" path="res://gameplay/modifier/mobility_status_effect.gd" id="8_t05qx"]
+[ext_resource type="Script" uid="uid://b3qeoxa1xgyb7" path="res://gameplay/modifier/factor_modifier.gd" id="9_twdsk"]
 
 [sub_resource type="Resource" id="Resource_nbgvb"]
 script = ExtResource("2_ecbbh")
@@ -21,6 +23,21 @@ radius = 42.107
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o48wq"]
 radius = 168.434
+
+[sub_resource type="GDScript" id="GDScript_nbgvb"]
+script/source = "extends Node
+
+@export var status_effect: StatusEffect
+
+func apply_to_source(interaction_source: InteractionSource2D) -> void:
+	var entity: Entity2D = interaction_source.get_parent()
+	entity.status.apply(status_effect.duplicate(DUPLICATE_USE_INSTANTIATION | DUPLICATE_SCRIPTS))
+"
+
+[sub_resource type="Resource" id="Resource_lj2y2"]
+script = ExtResource("9_twdsk")
+factor = 2.0
+metadata/_custom_type_script = "uid://b3qeoxa1xgyb7"
 
 [node name="game" type="Node2D"]
 
@@ -54,6 +71,7 @@ shape = SubResource("CircleShape2D_oqids")
 [node name="interaction_target_2d" type="Area2D" parent="."]
 position = Vector2(-364, -128)
 script = ExtResource("4_o48wq")
+indicator_offset = Vector2(0, -64)
 metadata/_custom_type_script = "uid://s3yrms1tsgod"
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="interaction_target_2d"]
@@ -63,3 +81,14 @@ metadata/_edit_lock_ = true
 [node name="sprite_2d" type="Sprite2D" parent="interaction_target_2d"]
 self_modulate = Color(1, 0.48, 0.48, 1)
 texture = ExtResource("2_3d44o")
+
+[node name="status_apply" type="Node" parent="interaction_target_2d" node_paths=PackedStringArray("status_effect")]
+script = SubResource("GDScript_nbgvb")
+status_effect = NodePath("mobility")
+
+[node name="mobility" type="Node" parent="interaction_target_2d/status_apply"]
+script = ExtResource("8_t05qx")
+modifier = SubResource("Resource_lj2y2")
+metadata/_custom_type_script = "uid://cdbni102aaavo"
+
+[connection signal="interacted_by" from="interaction_target_2d" to="interaction_target_2d/status_apply" method="apply_to_source"]

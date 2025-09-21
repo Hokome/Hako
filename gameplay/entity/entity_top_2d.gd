@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity2D
 class_name EntityTop2D
 
 @export var speed: PipeValue

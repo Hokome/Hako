@@ -4,7 +4,7 @@ class_name PipeValue
 @export var base_int: int
 @export var base_float: float
 
-var _merge_table: Dictionary[String, Modifier] = {}
+#var _merge_table: Dictionary[String, Modifier] = {}
 var _modifiers: Array[Modifier] = []
 
 func computei() -> int:
@@ -22,17 +22,10 @@ func computef() -> float:
 	return temporary_value
 
 func apply_modifier(modifier: Modifier) -> void:
-	var merge_string := modifier.get_merge_string()
-	if !merge_string.is_empty():
-		var existing: Modifier = _merge_table.get(merge_string)
-		if existing:
-			existing.merge(modifier)
-		else:
-			_modifiers.push_back(modifier)
-	else:
-		_modifiers.push_back(modifier)
-	
-	# always sort because merging could potentially affect priority
+	_modifiers.push_back(modifier)
 	_modifiers.sort_custom(cmp_modifiers)
+
+func remove_modifier(modifier: Modifier) -> void:
+	_modifiers.erase(modifier)
 
 func cmp_modifiers(a: Modifier, b: Modifier) -> bool: return a.get_priority() < b.get_priority()
