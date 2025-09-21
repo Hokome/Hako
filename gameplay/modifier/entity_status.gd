@@ -14,4 +14,4 @@ func apply(status: StatusEffect) -> void:
 
 func cure(status_name: NodePath) -> void:
 	var status: StatusEffect = get_node_or_null(status_name)
-	status.cure(get_parent())
+	status.cure()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2gmj0sah4o26"]
+[gd_scene load_steps=17 format=3 uid="uid://b2gmj0sah4o26"]
 
 [ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://gameplay/entity/player_top_2d.gd" id="1_shnn6"]
 [ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="2_3d44o"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ctm1xj4vu0dm1" path="res://gameplay/interaction/default_interaction_indicator.tscn" id="6_nbgvb"]
 [ext_resource type="Script" uid="uid://cdbni102aaavo" path="res://gameplay/modifier/mobility_status_effect.gd" id="8_t05qx"]
 [ext_resource type="Script" uid="uid://b3qeoxa1xgyb7" path="res://gameplay/modifier/factor_modifier.gd" id="9_twdsk"]
+[ext_resource type="Script" uid="uid://cujf7urijv20f" path="res://gameplay/modifier/status_effect_timer.gd" id="10_lj2y2"]
 
 [sub_resource type="Resource" id="Resource_nbgvb"]
 script = ExtResource("2_ecbbh")
@@ -90,5 +91,10 @@ status_effect = NodePath("mobility")
 script = ExtResource("8_t05qx")
 modifier = SubResource("Resource_lj2y2")
 metadata/_custom_type_script = "uid://cdbni102aaavo"
+
+[node name="timer" type="Timer" parent="interaction_target_2d/status_apply/mobility"]
+wait_time = 5.0
+script = ExtResource("10_lj2y2")
+metadata/_custom_type_script = "uid://cujf7urijv20f"
 
 [connection signal="interacted_by" from="interaction_target_2d" to="interaction_target_2d/status_apply" method="apply_to_source"]

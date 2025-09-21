@@ -2,17 +2,19 @@
 extends Node
 class_name StatusEffect
 
-@export var lifetime: StatusLifetime
+signal applied(Entity2D)
+signal cured
+signal merged(StatusEffect)
 
-func apply(_entity: Entity2D) -> void:
-	pass
+var current_entity: Entity2D
 
-func cure(_entity: Entity2D) -> void:
-	pass
+func apply(entity: Entity2D) -> void:
+	current_entity = entity
+	applied.emit(entity)
+
+func cure() -> void:
+	cured.emit()
+	queue_free()
 
 func merge(other: StatusEffect) -> void:
-	if other.lifetime:
-		if lifetime:
-			lifetime.merge(other.lifetime)
-		else:
-			lifetime = other.lifetime
+	merged.emit(other)
