@@ -1,10 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2gmj0sah4o26"]
+[gd_scene load_steps=12 format=3 uid="uid://b2gmj0sah4o26"]
 
-[ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://gameplay/player_2d.gd" id="1_shnn6"]
+[ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://gameplay/player_top_2d.gd" id="1_shnn6"]
 [ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="2_3d44o"]
+[ext_resource type="Script" uid="uid://dpr2lg8us3hgo" path="res://gameplay/pipe_value.gd" id="2_ecbbh"]
 [ext_resource type="Script" uid="uid://pd4mep5e0wo2" path="res://util/capped_int.gd" id="3_kgtcu"]
 [ext_resource type="Script" uid="uid://s3yrms1tsgod" path="res://gameplay/interaction_target_2d.gd" id="4_o48wq"]
 [ext_resource type="Script" uid="uid://crjbxxy2lb82b" path="res://gameplay/interaction_origin_2d.gd" id="4_oqids"]
+[ext_resource type="PackedScene" uid="uid://ctm1xj4vu0dm1" path="res://gameplay/default_interaction_indicator.tscn" id="6_nbgvb"]
+
+[sub_resource type="Resource" id="Resource_nbgvb"]
+script = ExtResource("2_ecbbh")
+base_float = 256.0
+metadata/_custom_type_script = "uid://dpr2lg8us3hgo"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3d44o"]
 radius = 63.3877
@@ -21,7 +28,7 @@ radius = 168.434
 
 [node name="player_2d" type="CharacterBody2D" parent="."]
 script = ExtResource("1_shnn6")
-base_speed = 240.0
+speed = SubResource("Resource_nbgvb")
 metadata/_custom_type_script = "uid://bxiklrsxn3xcm"
 
 [node name="sprite_2d" type="Sprite2D" parent="player_2d"]
@@ -36,11 +43,12 @@ script = ExtResource("3_kgtcu")
 max_value = 100
 metadata/_custom_type_script = "uid://pd4mep5e0wo2"
 
-[node name="interaction_origin_2d" type="Area2D" parent="player_2d"]
+[node name="interaction_source_2d" type="Area2D" parent="player_2d"]
 script = ExtResource("4_oqids")
+indicator_scene = ExtResource("6_nbgvb")
 metadata/_custom_type_script = "uid://crjbxxy2lb82b"
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="player_2d/interaction_origin_2d"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="player_2d/interaction_source_2d"]
 shape = SubResource("CircleShape2D_oqids")
 
 [node name="interaction_target_2d" type="Area2D" parent="."]
@@ -50,6 +58,7 @@ metadata/_custom_type_script = "uid://s3yrms1tsgod"
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="interaction_target_2d"]
 shape = SubResource("CircleShape2D_o48wq")
+metadata/_edit_lock_ = true
 
 [node name="sprite_2d" type="Sprite2D" parent="interaction_target_2d"]
 self_modulate = Color(1, 0.48, 0.48, 1)

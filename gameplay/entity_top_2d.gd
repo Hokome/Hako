@@ -1,12 +1,12 @@
 extends CharacterBody2D
 class_name EntityTop2D
 
-@export var base_speed: float
+@export var speed: PipeValue
 
 var direction: Vector2:
 	set(val):
 		direction = val.normalized()
 
 func _physics_process(_delta: float) -> void:
-	velocity = direction * base_speed
+	velocity = direction * speed.computef()
 	move_and_slide()
