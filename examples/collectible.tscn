@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://btkbwxmee07gc"]
+
+[ext_resource type="Script" uid="uid://dgl4vt7cd6av8" path="res://entity/loot/collectible.gd" id="1_135sc"]
+[ext_resource type="Script" uid="uid://tgluy2w7hqf2" path="res://util/auto_poly.gd" id="1_bdi2r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yhh6l"]
+
+[node name="collectible" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_135sc")
+
+[node name="auto_poly" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(10, 0, 9.659258, 2.5881906, 8.660254, 5, 7.071068, 7.071068, 4.9999995, 8.6602545, 2.5881908, 9.659258, -4.371139e-07, 10, -2.5881906, 9.659258, -5.0000005, 8.660254, -7.071068, 7.071068, -8.660254, 5.0000005, -9.659258, 2.5881913, -10, -8.742278e-07, -9.659258, -2.5881908, -8.660254, -4.9999995, -7.0710683, -7.071067, -4.999999, -8.6602545, -2.5881898, -9.659259, 1.1924881e-07, -10, 2.58819, -9.659258, 4.999999, -8.6602545, 7.0710664, -7.071069, 8.660254, -5.000002, 9.659259, -2.5881884)
+script = ExtResource("1_bdi2r")
+count = 24
+radius = 10.0
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yhh6l")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2gmj0sah4o26"]
+[gd_scene load_steps=38 format=3 uid="uid://b2gmj0sah4o26"]
 
 [ext_resource type="Script" uid="uid://bwqpi50ds2oim" path="res://util/infinite_background.gd" id="1_bkewa"]
 [ext_resource type="Texture2D" uid="uid://7g7yrnlijy1j" path="res://util/cell.png" id="1_q4smb"]
@@ -16,7 +16,11 @@
 [ext_resource type="Script" uid="uid://b3qeoxa1xgyb7" path="res://modifier/factor_modifier.gd" id="9_twdsk"]
 [ext_resource type="Script" uid="uid://cujf7urijv20f" path="res://entity/status/status_effect_timer.gd" id="10_lj2y2"]
 [ext_resource type="Script" uid="uid://tgluy2w7hqf2" path="res://util/auto_poly.gd" id="11_bkewa"]
+[ext_resource type="Script" uid="uid://c7rri6yxmquu4" path="res://entity/loot/collector.gd" id="12_sohic"]
 [ext_resource type="Script" uid="uid://bijvscduwfj8u" path="res://entity/entity_2d.gd" id="14_m8fja"]
+[ext_resource type="Script" uid="uid://dwi03f486ogpq" path="res://entity/loot/loot_spawner.gd" id="18_opmk1"]
+[ext_resource type="Script" uid="uid://c7rlp48p4kd0g" path="res://entity/loot/loot_table.gd" id="19_603il"]
+[ext_resource type="PackedScene" uid="uid://btkbwxmee07gc" path="res://examples/collectible.tscn" id="19_qd6fc"]
 
 [sub_resource type="Resource" id="Resource_nbgvb"]
 script = ExtResource("2_ecbbh")
@@ -62,6 +66,9 @@ script = ExtResource("2_ecbbh")
 base_float = 0.2
 metadata/_custom_type_script = "uid://dpr2lg8us3hgo"
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_sohic"]
+radius = 128.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_q4smb"]
 radius = 64.0
 
@@ -82,6 +89,13 @@ func apply_to_source(interaction_source: InteractionSource2D) -> void:
 script = ExtResource("9_twdsk")
 factor = 2.0
 metadata/_custom_type_script = "uid://b3qeoxa1xgyb7"
+
+[sub_resource type="Resource" id="Resource_qd6fc"]
+script = ExtResource("19_603il")
+chances = Dictionary[Resource, float]({
+ExtResource("19_qd6fc"): 2.5
+})
+metadata/_custom_type_script = "uid://c7rlp48p4kd0g"
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_t87se")
@@ -147,6 +161,18 @@ texture = ExtResource("1_q4smb")
 script = ExtResource("1_bkewa")
 metadata/_custom_type_script = "uid://bwqpi50ds2oim"
 
+[node name="collector" type="Area2D" parent="player_2d"]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("12_sohic")
+collect_radius = 64.0
+magnet_strength = 512.0
+metadata/_custom_type_script = "uid://c7rri6yxmquu4"
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="player_2d/collector"]
+shape = SubResource("CircleShape2D_sohic")
+
 [node name="entity_2d" type="CharacterBody2D" parent="."]
 position = Vector2(-395, -77)
 collision_layer = 4
@@ -205,4 +231,10 @@ theme_type_variation = &"HealthBar"
 value = 100.0
 show_percentage = false
 
+[node name="loot" type="Node" parent="entity_2d"]
+script = ExtResource("18_opmk1")
+table = SubResource("Resource_qd6fc")
+radius = 64.0
+
+[connection signal="died" from="entity_2d" to="entity_2d/loot" method="drop_loot"]
 [connection signal="interacted_by" from="entity_2d/interaction_target_2d" to="entity_2d/interaction_target_2d/status_apply" method="apply_to_source"]

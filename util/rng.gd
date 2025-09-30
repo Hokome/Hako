@@ -13,7 +13,7 @@ static func even_circle(radius: float, rng: RandomNumberGenerator = null) -> Vec
 	while result.length_squared() > sqr_radius:
 		result = even_square(radius, rng)
 	
-	return Vector2.ZERO
+	return result
 
 static func even_square(radius: float, rng: RandomNumberGenerator = null) -> Vector2:
 	if not rng: rng = _default_rng

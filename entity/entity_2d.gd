@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Entity2D
 
+signal died
+
 var status: EntityStatus
 @onready var hp: CappedInt = get_node_or_null("hp")
 
@@ -20,6 +22,7 @@ func damage(amount: int) -> void:
 	hp.value -= amount
 
 func die() -> void:
+	died.emit()
 	queue_free()
 
 func connect_hp(ui: Range) -> void:
