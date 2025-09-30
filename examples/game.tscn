@@ -1,6 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2gmj0sah4o26"]
+[gd_scene load_steps=31 format=3 uid="uid://b2gmj0sah4o26"]
 
-[ext_resource type="Script" uid="uid://bwqpi50ds2oim" path="res://util/infinite_sprite.gd" id="1_3lwlx"]
+[ext_resource type="Script" uid="uid://bwqpi50ds2oim" path="res://util/infinite_background.gd" id="1_bkewa"]
+[ext_resource type="Texture2D" uid="uid://7g7yrnlijy1j" path="res://util/cell.png" id="1_q4smb"]
 [ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="2_3d44o"]
 [ext_resource type="Script" uid="uid://71s8d86le6b8" path="res://examples/example_player.gd" id="2_e0lww"]
 [ext_resource type="Script" uid="uid://dpr2lg8us3hgo" path="res://modifier/pipe_value.gd" id="2_ecbbh"]
@@ -15,13 +16,6 @@
 [ext_resource type="Script" uid="uid://cujf7urijv20f" path="res://entity/status/status_effect_timer.gd" id="10_lj2y2"]
 [ext_resource type="Script" uid="uid://tgluy2w7hqf2" path="res://util/auto_poly.gd" id="11_bkewa"]
 [ext_resource type="Script" uid="uid://bijvscduwfj8u" path="res://entity/entity_2d.gd" id="14_m8fja"]
-
-[sub_resource type="Gradient" id="Gradient_8bvmi"]
-colors = PackedColorArray(0, 0, 0, 1, 0.39308554, 0.3930855, 0.39308548, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_e0lww"]
-gradient = SubResource("Gradient_8bvmi")
-repeat = 1
 
 [sub_resource type="Resource" id="Resource_nbgvb"]
 script = ExtResource("2_ecbbh")
@@ -90,14 +84,6 @@ metadata/_custom_type_script = "uid://b3qeoxa1xgyb7"
 
 [node name="game" type="Node2D"]
 
-[node name="camera_2d" type="Camera2D" parent="."]
-
-[node name="infinite_sprite" type="Sprite2D" parent="camera_2d"]
-texture_repeat = 2
-texture = SubResource("GradientTexture2D_e0lww")
-script = ExtResource("1_3lwlx")
-metadata/_custom_type_script = "uid://bwqpi50ds2oim"
-
 [node name="player_2d" type="CharacterBody2D" parent="."]
 collision_layer = 2
 collision_mask = 7
@@ -149,6 +135,15 @@ variation = SubResource("Resource_t87se")
 damage = SubResource("Resource_opmk1")
 cooldown = SubResource("Resource_603il")
 metadata/_custom_type_script = "uid://bb6ac0ps0a8ia"
+
+[node name="camera_2d" type="Camera2D" parent="player_2d"]
+
+[node name="infinite_background" type="TextureRect" parent="player_2d/camera_2d"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_q4smb")
+script = ExtResource("1_bkewa")
+metadata/_custom_type_script = "uid://bwqpi50ds2oim"
 
 [node name="entity_2d" type="CharacterBody2D" parent="."]
 position = Vector2(-395, -77)
