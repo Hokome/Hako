@@ -1,7 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://b2gmj0sah4o26"]
+[gd_scene load_steps=32 format=3 uid="uid://b2gmj0sah4o26"]
 
 [ext_resource type="Script" uid="uid://bwqpi50ds2oim" path="res://util/infinite_background.gd" id="1_bkewa"]
 [ext_resource type="Texture2D" uid="uid://7g7yrnlijy1j" path="res://util/cell.png" id="1_q4smb"]
+[ext_resource type="Script" uid="uid://c4kkgxtaaaeri" path="res://examples/test.gd" id="1_t87se"]
 [ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="2_3d44o"]
 [ext_resource type="Script" uid="uid://71s8d86le6b8" path="res://examples/example_player.gd" id="2_e0lww"]
 [ext_resource type="Script" uid="uid://dpr2lg8us3hgo" path="res://modifier/pipe_value.gd" id="2_ecbbh"]
@@ -83,6 +84,7 @@ factor = 2.0
 metadata/_custom_type_script = "uid://b3qeoxa1xgyb7"
 
 [node name="game" type="Node2D"]
+script = ExtResource("1_t87se")
 
 [node name="player_2d" type="CharacterBody2D" parent="."]
 collision_layer = 2

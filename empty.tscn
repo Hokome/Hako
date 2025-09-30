@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://ck57vnnea6kid"]
+
+[ext_resource type="Script" uid="uid://7nlvuucyxeca" path="res://empty.gd" id="1_6xhwa"]
+[ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://ui/core/menu.gd" id="2_gjov3"]
+[ext_resource type="Script" uid="uid://dyt2t3ixf03y" path="res://ui/widgets/scene_load_button.gd" id="3_iwhc7"]
+[ext_resource type="PackedScene" uid="uid://b2gmj0sah4o26" path="res://examples/game.tscn" id="4_02byk"]
+[ext_resource type="Script" uid="uid://bfm3hms78vpvb" path="res://ui/widgets/global_navigation_button.gd" id="5_5de1s"]
+[ext_resource type="PackedScene" uid="uid://vi70dh8dp64p" path="res://examples/audio_test.tscn" id="6_20y1s"]
+[ext_resource type="PackedScene" uid="uid://slt057csq47n" path="res://ui/menus/network_room_menu.tscn" id="7_qmqmn"]
+
+[node name="test" type="Node"]
+script = ExtResource("1_6xhwa")
+
+[node name="examples" type="VBoxContainer" parent="." node_paths=PackedStringArray("first_focus")]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_gjov3")
+first_focus = NodePath("game")
+
+[node name="game" type="Button" parent="examples"]
+layout_mode = 2
+text = "Game"
+script = ExtResource("3_iwhc7")
+game_scene = ExtResource("4_02byk")
+
+[node name="network" type="Button" parent="examples" node_paths=PackedStringArray("navigate_to")]
+layout_mode = 2
+text = "Network"
+script = ExtResource("5_5de1s")
+navigate_to = NodePath("../../network_room_menu")
+
+[node name="audio" type="Button" parent="examples"]
+layout_mode = 2
+text = "Audio"
+script = ExtResource("3_iwhc7")
+game_scene = ExtResource("6_20y1s")
+
+[node name="network_room_menu" parent="." instance=ExtResource("7_qmqmn")]
+visible = false
