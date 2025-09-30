@@ -23,9 +23,20 @@ func computef() -> float:
 
 func apply_modifier(modifier: Modifier) -> void:
 	_modifiers.push_back(modifier)
-	_modifiers.sort_custom(cmp_modifiers)
+	_modifiers.sort_custom(_cmp_modifiers)
 
 func remove_modifier(modifier: Modifier) -> void:
 	_modifiers.erase(modifier)
 
-func cmp_modifiers(a: Modifier, b: Modifier) -> bool: return a.get_priority() < b.get_priority()
+func _cmp_modifiers(a: Modifier, b: Modifier) -> bool:
+	return a.get_priority() < b.get_priority()
+
+static func from_base_int(value: int) -> PipeValue:
+	var p := PipeValue.new()
+	p.base_int = value
+	return p
+
+static func from_base_float(value: float) -> PipeValue:
+	var p := PipeValue.new()
+	p.base_float = value
+	return p

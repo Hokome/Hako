@@ -19,5 +19,8 @@ var value: int:
 		if value == 0:
 			value_zero.emit()
 
-func _init() -> void:
+func _ready() -> void:
+	saturate()
+
+func saturate() -> void:
 	value = max_value

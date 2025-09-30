@@ -1,15 +1,26 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2gmj0sah4o26"]
+[gd_scene load_steps=31 format=3 uid="uid://b2gmj0sah4o26"]
 
-[ext_resource type="Script" uid="uid://bxiklrsxn3xcm" path="res://gameplay/entity/player_top_2d.gd" id="1_shnn6"]
+[ext_resource type="Script" uid="uid://bwqpi50ds2oim" path="res://util/infinite_sprite.gd" id="1_3lwlx"]
 [ext_resource type="Texture2D" uid="uid://w8ua1ikhwwp0" path="res://icon.svg" id="2_3d44o"]
-[ext_resource type="Script" uid="uid://dpr2lg8us3hgo" path="res://gameplay/modifier/pipe_value.gd" id="2_ecbbh"]
+[ext_resource type="Script" uid="uid://71s8d86le6b8" path="res://examples/example_player.gd" id="2_e0lww"]
+[ext_resource type="Script" uid="uid://dpr2lg8us3hgo" path="res://modifier/pipe_value.gd" id="2_ecbbh"]
 [ext_resource type="Script" uid="uid://pd4mep5e0wo2" path="res://util/capped_int.gd" id="3_kgtcu"]
-[ext_resource type="Script" uid="uid://s3yrms1tsgod" path="res://gameplay/interaction/interaction_target_2d.gd" id="4_o48wq"]
-[ext_resource type="Script" uid="uid://crjbxxy2lb82b" path="res://gameplay/interaction/interaction_origin_2d.gd" id="4_oqids"]
-[ext_resource type="PackedScene" uid="uid://ctm1xj4vu0dm1" path="res://gameplay/interaction/default_interaction_indicator.tscn" id="6_nbgvb"]
-[ext_resource type="Script" uid="uid://cdbni102aaavo" path="res://gameplay/modifier/mobility_status_effect.gd" id="8_t05qx"]
-[ext_resource type="Script" uid="uid://b3qeoxa1xgyb7" path="res://gameplay/modifier/factor_modifier.gd" id="9_twdsk"]
-[ext_resource type="Script" uid="uid://cujf7urijv20f" path="res://gameplay/modifier/status_effect_timer.gd" id="10_lj2y2"]
+[ext_resource type="Script" uid="uid://s3yrms1tsgod" path="res://entity/interaction/interaction_target_2d.gd" id="4_o48wq"]
+[ext_resource type="Script" uid="uid://crjbxxy2lb82b" path="res://entity/interaction/interaction_origin_2d.gd" id="4_oqids"]
+[ext_resource type="PackedScene" uid="uid://ctm1xj4vu0dm1" path="res://entity/interaction/default_interaction_indicator.tscn" id="6_nbgvb"]
+[ext_resource type="Script" uid="uid://bb6ac0ps0a8ia" path="res://entity/weapon/default_weapon.gd" id="8_8bvmi"]
+[ext_resource type="Script" uid="uid://cdbni102aaavo" path="res://entity/status/mobility_status_effect.gd" id="8_t05qx"]
+[ext_resource type="PackedScene" uid="uid://cnoiqo7v56j12" path="res://examples/projectile.tscn" id="9_e0lww"]
+[ext_resource type="Script" uid="uid://b3qeoxa1xgyb7" path="res://modifier/factor_modifier.gd" id="9_twdsk"]
+[ext_resource type="Script" uid="uid://cujf7urijv20f" path="res://entity/status/status_effect_timer.gd" id="10_lj2y2"]
+[ext_resource type="Script" uid="uid://bijvscduwfj8u" path="res://entity/entity_2d.gd" id="14_m8fja"]
+
+[sub_resource type="Gradient" id="Gradient_8bvmi"]
+colors = PackedColorArray(0, 0, 0, 1, 0.39308554, 0.3930855, 0.39308548, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e0lww"]
+gradient = SubResource("Gradient_8bvmi")
+repeat = 1
 
 [sub_resource type="Resource" id="Resource_nbgvb"]
 script = ExtResource("2_ecbbh")
@@ -21,6 +32,42 @@ radius = 63.3877
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oqids"]
 radius = 42.107
+
+[sub_resource type="Resource" id="Resource_e0lww"]
+script = ExtResource("2_ecbbh")
+base_float = 512.0
+metadata/_custom_type_script = "uid://dpr2lg8us3hgo"
+
+[sub_resource type="Resource" id="Resource_m8fja"]
+script = ExtResource("2_ecbbh")
+base_int = 1
+metadata/_custom_type_script = "uid://dpr2lg8us3hgo"
+
+[sub_resource type="Resource" id="Resource_bkewa"]
+script = ExtResource("2_ecbbh")
+base_int = 1
+metadata/_custom_type_script = "uid://dpr2lg8us3hgo"
+
+[sub_resource type="Resource" id="Resource_q4smb"]
+script = ExtResource("2_ecbbh")
+metadata/_custom_type_script = "uid://dpr2lg8us3hgo"
+
+[sub_resource type="Resource" id="Resource_t87se"]
+script = ExtResource("2_ecbbh")
+metadata/_custom_type_script = "uid://dpr2lg8us3hgo"
+
+[sub_resource type="Resource" id="Resource_opmk1"]
+script = ExtResource("2_ecbbh")
+base_int = 2
+metadata/_custom_type_script = "uid://dpr2lg8us3hgo"
+
+[sub_resource type="Resource" id="Resource_603il"]
+script = ExtResource("2_ecbbh")
+base_float = 0.2
+metadata/_custom_type_script = "uid://dpr2lg8us3hgo"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8fja"]
+size = Vector2(128, 128)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o48wq"]
 radius = 168.434
@@ -44,8 +91,16 @@ metadata/_custom_type_script = "uid://b3qeoxa1xgyb7"
 
 [node name="camera_2d" type="Camera2D" parent="."]
 
+[node name="infinite_sprite" type="Sprite2D" parent="camera_2d"]
+texture_repeat = 2
+texture = SubResource("GradientTexture2D_e0lww")
+script = ExtResource("1_3lwlx")
+metadata/_custom_type_script = "uid://bwqpi50ds2oim"
+
 [node name="player_2d" type="CharacterBody2D" parent="."]
-script = ExtResource("1_shnn6")
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("2_e0lww")
 speed = SubResource("Resource_nbgvb")
 metadata/_custom_type_script = "uid://bxiklrsxn3xcm"
 
@@ -56,10 +111,23 @@ texture = ExtResource("2_3d44o")
 shape = SubResource("CircleShape2D_3d44o")
 metadata/_edit_lock_ = true
 
-[node name="health" type="Node" parent="player_2d"]
+[node name="hp" type="Node" parent="player_2d"]
 script = ExtResource("3_kgtcu")
 max_value = 100
 metadata/_custom_type_script = "uid://pd4mep5e0wo2"
+
+[node name="hp_bar" type="ProgressBar" parent="player_2d"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = 89.0
+offset_right = 64.0
+offset_bottom = 105.0
+grow_horizontal = 2
+theme_type_variation = &"HealthBar"
+value = 100.0
+show_percentage = false
 
 [node name="interaction_source_2d" type="Area2D" parent="player_2d"]
 script = ExtResource("4_oqids")
@@ -69,32 +137,72 @@ metadata/_custom_type_script = "uid://crjbxxy2lb82b"
 [node name="collision_shape_2d" type="CollisionShape2D" parent="player_2d/interaction_source_2d"]
 shape = SubResource("CircleShape2D_oqids")
 
-[node name="interaction_target_2d" type="Area2D" parent="."]
-position = Vector2(-364, -128)
+[node name="weapon" type="Node2D" parent="player_2d"]
+script = ExtResource("8_8bvmi")
+projectile_scene = ExtResource("9_e0lww")
+speed = SubResource("Resource_e0lww")
+count = SubResource("Resource_m8fja")
+pierce = SubResource("Resource_bkewa")
+spread = SubResource("Resource_q4smb")
+variation = SubResource("Resource_t87se")
+damage = SubResource("Resource_opmk1")
+cooldown = SubResource("Resource_603il")
+metadata/_custom_type_script = "uid://bb6ac0ps0a8ia"
+
+[node name="entity_2d" type="CharacterBody2D" parent="."]
+position = Vector2(-395, -77)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("14_m8fja")
+metadata/_custom_type_script = "uid://bijvscduwfj8u"
+
+[node name="sprite_2d" type="Sprite2D" parent="entity_2d"]
+self_modulate = Color(1, 0.48, 0.48, 1)
+texture = ExtResource("2_3d44o")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="entity_2d"]
+shape = SubResource("RectangleShape2D_m8fja")
+metadata/_edit_lock_ = true
+
+[node name="interaction_target_2d" type="Area2D" parent="entity_2d"]
 script = ExtResource("4_o48wq")
 indicator_offset = Vector2(0, -64)
 metadata/_custom_type_script = "uid://s3yrms1tsgod"
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="interaction_target_2d"]
+[node name="collision_shape_2d" type="CollisionShape2D" parent="entity_2d/interaction_target_2d"]
 shape = SubResource("CircleShape2D_o48wq")
 metadata/_edit_lock_ = true
 
-[node name="sprite_2d" type="Sprite2D" parent="interaction_target_2d"]
-self_modulate = Color(1, 0.48, 0.48, 1)
-texture = ExtResource("2_3d44o")
-
-[node name="status_apply" type="Node" parent="interaction_target_2d" node_paths=PackedStringArray("status_effect")]
+[node name="status_apply" type="Node" parent="entity_2d/interaction_target_2d" node_paths=PackedStringArray("status_effect")]
 script = SubResource("GDScript_nbgvb")
 status_effect = NodePath("mobility")
 
-[node name="mobility" type="Node" parent="interaction_target_2d/status_apply"]
+[node name="mobility" type="Node" parent="entity_2d/interaction_target_2d/status_apply"]
 script = ExtResource("8_t05qx")
 modifier = SubResource("Resource_lj2y2")
 metadata/_custom_type_script = "uid://cdbni102aaavo"
 
-[node name="timer" type="Timer" parent="interaction_target_2d/status_apply/mobility"]
+[node name="timer" type="Timer" parent="entity_2d/interaction_target_2d/status_apply/mobility"]
 wait_time = 5.0
 script = ExtResource("10_lj2y2")
 metadata/_custom_type_script = "uid://cujf7urijv20f"
 
-[connection signal="interacted_by" from="interaction_target_2d" to="interaction_target_2d/status_apply" method="apply_to_source"]
+[node name="hp" type="Node" parent="entity_2d"]
+script = ExtResource("3_kgtcu")
+max_value = 10
+metadata/_custom_type_script = "uid://pd4mep5e0wo2"
+
+[node name="hp_bar" type="ProgressBar" parent="entity_2d"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = 89.0
+offset_right = 64.0
+offset_bottom = 105.0
+grow_horizontal = 2
+theme_type_variation = &"HealthBar"
+value = 100.0
+show_percentage = false
+
+[connection signal="interacted_by" from="entity_2d/interaction_target_2d" to="entity_2d/interaction_target_2d/status_apply" method="apply_to_source"]

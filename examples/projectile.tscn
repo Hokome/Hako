@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnoiqo7v56j12"]
+
+[ext_resource type="Script" uid="uid://btx7kkit0ho7w" path="res://entity/weapon/attack.gd" id="1_uqpih"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqpih"]
+radius = 8.0
+
+[node name="projectile" type="Node2D"]
+script = ExtResource("1_uqpih")
+metadata/_custom_type_script = "uid://btx7kkit0ho7w"
+
+[node name="polygon_2d" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -8, -8, 0, 0, 8, 8, 0)
+
+[node name="shape_cast_2d" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_uqpih")
+target_position = Vector2(0, 0)
+collision_mask = 4
+
+[node name="timer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="timer" to="." method="timeout"]
