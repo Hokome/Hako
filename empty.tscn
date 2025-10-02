@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ck57vnnea6kid"]
+[gd_scene load_steps=9 format=3 uid="uid://ck57vnnea6kid"]
 
-[ext_resource type="Script" uid="uid://7nlvuucyxeca" path="res://empty.gd" id="1_6xhwa"]
+[ext_resource type="Script" uid="uid://7nlvuucyxeca" path="res://setup.gd" id="1_6xhwa"]
 [ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://ui/core/menu.gd" id="2_gjov3"]
 [ext_resource type="Script" uid="uid://dyt2t3ixf03y" path="res://ui/widgets/scene_load_button.gd" id="3_iwhc7"]
 [ext_resource type="PackedScene" uid="uid://b2gmj0sah4o26" path="res://examples/game.tscn" id="4_02byk"]
 [ext_resource type="Script" uid="uid://bfm3hms78vpvb" path="res://ui/widgets/global_navigation_button.gd" id="5_5de1s"]
+[ext_resource type="PackedScene" uid="uid://ctyh6c1okrw56" path="res://examples/misc.tscn" id="5_gjov3"]
 [ext_resource type="PackedScene" uid="uid://vi70dh8dp64p" path="res://examples/audio_test.tscn" id="6_20y1s"]
 [ext_resource type="PackedScene" uid="uid://slt057csq47n" path="res://ui/menus/network_room_menu.tscn" id="7_qmqmn"]
 
@@ -29,6 +30,12 @@ layout_mode = 2
 text = "Game"
 script = ExtResource("3_iwhc7")
 game_scene = ExtResource("4_02byk")
+
+[node name="misc" type="Button" parent="examples"]
+layout_mode = 2
+text = "Misc"
+script = ExtResource("3_iwhc7")
+game_scene = ExtResource("5_gjov3")
 
 [node name="network" type="Button" parent="examples" node_paths=PackedStringArray("navigate_to")]
 layout_mode = 2

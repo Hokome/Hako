@@ -38,7 +38,7 @@ func navigate(menu: Menu, overwrite: bool = false, transition: MenuTransition = 
 	_stack.push_back(menu)
 	await transition_menu(menu, true, transition)
 
-## Goes to the last menu in the stack. If the [member Menu.is_root] is true,
+## Goes to the last menu in the stack. If [member Menu.is_root] is true,
 ## the function will do nothing.
 func back(transition: MenuTransition = null) -> Menu:
 	var menu: Menu = _stack.pop_back()

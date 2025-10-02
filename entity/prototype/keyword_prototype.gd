@@ -1,0 +1,2 @@
+extends Prototype
+class_name KeywordPrototype

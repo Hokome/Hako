@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ColorPrototype" load_steps=2 format=3 uid="uid://dsowfe7cycimg"]
+
+[ext_resource type="Script" uid="uid://dgnxr2diw3dtm" path="res://examples/color_prototype.gd" id="1_tqiwk"]
+
+[resource]
+script = ExtResource("1_tqiwk")
+color = Color(1, 1, 1, 1)
+tags = PackedStringArray("gray_scale")
+metadata/_custom_type_script = "uid://dgnxr2diw3dtm"

@@ -131,6 +131,7 @@ grow_horizontal = 2
 theme_type_variation = &"HealthBar"
 value = 100.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="interaction_source_2d" type="Area2D" parent="player_2d"]
 script = ExtResource("4_oqids")
@@ -160,6 +161,7 @@ offset_bottom = 40.0
 texture = ExtResource("1_q4smb")
 script = ExtResource("1_bkewa")
 metadata/_custom_type_script = "uid://bwqpi50ds2oim"
+metadata/_edit_use_anchors_ = true
 
 [node name="collector" type="Area2D" parent="player_2d"]
 collision_layer = 0
@@ -230,6 +232,7 @@ grow_horizontal = 2
 theme_type_variation = &"HealthBar"
 value = 100.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="loot" type="Node" parent="entity_2d"]
 script = ExtResource("18_opmk1")

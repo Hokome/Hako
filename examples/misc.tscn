@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctyh6c1okrw56"]
+
+[ext_resource type="Script" uid="uid://b3vfbdwkhar8y" path="res://ui/core/menu_stack.gd" id="1_d23d1"]
+[ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://ui/core/menu.gd" id="2_m3mg0"]
+
+[sub_resource type="GDScript" id="GDScript_jhg4a"]
+script/source = "extends CanvasLayer
+
+var pool: PrototypePool
+@export var stack: MenuStack
+@export var choices: Menu
+
+func _ready() -> void:
+	var registry := Registry.new()
+	registry.name = \"color\"
+	add_child(registry)
+	registry.load_folder(\"res://examples/color_prototypes\")
+	
+	pool = PrototypePool.new()
+	pool.name = \"pool\"
+	add_child(pool)
+	pool.fill(registry)
+
+func display_choices() -> void:
+	stack.navigate(choices, true)
+	Util.free_children(choices)
+	
+	var colors := pool.pull(2)
+	for color in colors:
+		var container := PanelContainer.new()
+		var margin := MarginContainer.new()
+		container.add_child(margin)
+		var vbox := VBoxContainer.new()
+		margin.add_child(vbox)
+		
+		var label := Label.new()
+		label.text = color.id
+		vbox.add_child(label)
+		
+		var panel := Panel.new()
+		var stylebox := StyleBoxFlat.new()
+		stylebox.border_color = Color.WHITE
+		stylebox.set_border_width_all(2)
+		stylebox.bg_color = color.color
+		panel.add_theme_stylebox_override(\"panel\", stylebox)
+		panel.custom_minimum_size = Vector2(100, 50)
+		vbox.add_child(panel)
+		choices.add_child(container)
+"
+
+[node name="misc" type="CanvasLayer" node_paths=PackedStringArray("stack", "choices")]
+script = SubResource("GDScript_jhg4a")
+stack = NodePath("margin/hbox/main")
+choices = NodePath("margin/hbox/main/choices")
+
+[node name="margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="hbox" type="HBoxContainer" parent="margin"]
+layout_mode = 2
+
+[node name="side" type="VBoxContainer" parent="margin/hbox"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="choice" type="Button" parent="margin/hbox/side"]
+layout_mode = 2
+text = "Choice"
+
+[node name="main" type="CenterContainer" parent="margin/hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_d23d1")
+metadata/_edit_lock_ = true
+
+[node name="choices" type="HBoxContainer" parent="margin/hbox/main"]
+layout_mode = 2
+script = ExtResource("2_m3mg0")
+
+[connection signal="pressed" from="margin/hbox/side/choice" to="." method="display_choices"]
