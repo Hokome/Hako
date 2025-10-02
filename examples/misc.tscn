@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctyh6c1okrw56"]
+[gd_scene load_steps=5 format=3 uid="uid://ctyh6c1okrw56"]
 
 [ext_resource type="Script" uid="uid://b3vfbdwkhar8y" path="res://ui/core/menu_stack.gd" id="1_d23d1"]
 [ext_resource type="Script" uid="uid://dfpqm1cjn7d3w" path="res://ui/core/menu.gd" id="2_m3mg0"]
@@ -46,6 +46,19 @@ func display_choices() -> void:
 		panel.custom_minimum_size = Vector2(100, 50)
 		vbox.add_child(panel)
 		choices.add_child(container)
+
+
+func _input_menu() -> void:
+	stack.navigate($margin/hbox/main/input, true)
+"
+
+[sub_resource type="GDScript" id="GDScript_m3mg0"]
+script/source = "extends TextureRect
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_released() or event.is_echo():
+		return
+	texture = InputPrompt.get_texture(event)
 "
 
 [node name="misc" type="CanvasLayer" node_paths=PackedStringArray("stack", "choices")]
@@ -73,9 +86,14 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 text = "Choice"
 
+[node name="input" type="Button" parent="margin/hbox/side"]
+layout_mode = 2
+text = "Input"
+
 [node name="main" type="CenterContainer" parent="margin/hbox"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 script = ExtResource("1_d23d1")
 metadata/_edit_lock_ = true
 
@@ -83,4 +101,15 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 script = ExtResource("2_m3mg0")
 
+[node name="input" type="PanelContainer" parent="margin/hbox/main"]
+layout_mode = 2
+script = ExtResource("2_m3mg0")
+
+[node name="texture_rect" type="TextureRect" parent="margin/hbox/main/input"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+stretch_mode = 4
+script = SubResource("GDScript_m3mg0")
+
 [connection signal="pressed" from="margin/hbox/side/choice" to="." method="display_choices"]
+[connection signal="pressed" from="margin/hbox/side/input" to="." method="_input_menu"]
