@@ -47,7 +47,6 @@ func display_choices() -> void:
 		vbox.add_child(panel)
 		choices.add_child(container)
 
-
 func _input_menu() -> void:
 	stack.navigate($margin/hbox/main/input, true)
 "
