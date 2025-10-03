@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctm1xj4vu0dm1"]
 
 [ext_resource type="Script" uid="uid://c6v113kw61lhu" path="res://entity/interaction/interaction_indicator_2d.gd" id="1_jerol"]
-[ext_resource type="Texture2D" uid="uid://co3kxsxxqxpco" path="res://icons/interact.svg" id="2_57khb"]
+[ext_resource type="Texture2D" uid="uid://co3kxsxxqxpco" path="res://graphics/interact.svg" id="2_57khb"]
 
 [node name="default_interaction_indicator" type="Node2D"]
 script = ExtResource("1_jerol")
